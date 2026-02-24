@@ -1,6 +1,7 @@
 import { defineTeekConfig } from "vitepress-theme-teek/config";
 
 export const teekConfig = defineTeekConfig({
+<<<<<<< codex/modify-blog-to-teek-demo-style-qheff2
   teekHome: true,
   vpHome: false,
   loading: true,
@@ -8,6 +9,15 @@ export const teekConfig = defineTeekConfig({
     enabled: true,
     hideBanner: true,
   },
+=======
+  teekHome: true, // 是否开启博客首页
+  vpHome: false, // 是否隐藏 VP 首页
+  post: {
+    postStyle: "card", // 文章列表切换为博客卡片风格
+  },
+  sidebarTrigger: true, // 是否开启侧边栏折叠功能
+  author: { name: "Teeker", link: "https://github.com/Kele-Bingtang" },
+>>>>>>> main
   footerInfo: {
     customHtml: '<span id="runtime"></span>',
     topMessage: [
