@@ -11,7 +11,7 @@ const description = [
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   extends: teekConfig,
-  title: "我的博客",
+  title: "Tom_Chicken Blog",
   description: description,
   cleanUrls: false,
   lastUpdated: true,
@@ -24,13 +24,13 @@ export default defineConfig({
     ["link", { rel: "icon", type: "image/png", href: "/teek-logo-mini.png" }],
     ["meta", { property: "og:type", content: "website" }],
     ["meta", { property: "og:locale", content: "zh-CN" }],
-    ["meta", { property: "og:title", content: "我的博客" }],
-    ["meta", { property: "og:site_name", content: "我的博客" }],
+    ["meta", { property: "og:title", content: "Tom_Chicken Blog" }],
+    ["meta", { property: "og:site_name", content: "Tom_Chicken Blog" }],
     ["meta", { property: "og:image", content: "" }],
-    ["meta", { property: "og:url", content: "" }],
+    ["meta", { property: "og:url", content: "https://blog.tomchicken.icu" }],
     ["meta", { property: "og:description", description }],
     ["meta", { name: "description", description }],
-    ["meta", { name: "author", content: "博主" }],
+    ["meta", { name: "author", content: "Tom_Chicken" }],
     // 禁止浏览器缩放
     // [
     //   "meta",
@@ -58,7 +58,7 @@ export default defineConfig({
     },
   },
   sitemap: {
-    hostname: "https://example.com", // TODO: 换成你的域名
+    hostname: "https://blog.tomchicken.icu",
     transformItems: (items) => {
       const permalinkItemBak: typeof items = [];
       // 使用永久链接生成 sitemap
@@ -115,7 +115,7 @@ export default defineConfig({
     socialLinks: [
       {
         icon: "github",
-        link: "https://github.com/yourname",
+        link: "https://github.com/TomChicken-on-github",
       },
     ],
     search: {
@@ -124,7 +124,7 @@ export default defineConfig({
     editLink: {
       text: "在 GitHub 上编辑此页",
       pattern:
-        "https://github.com/yourname/your-repo/edit/main/docs/:path",
+        "https://github.com/TomChicken-on-github/Tom_Chicken_Blog/edit/main/docs/:path",
     },
   },
   vite: {
