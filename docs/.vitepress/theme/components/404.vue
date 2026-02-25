@@ -11,7 +11,7 @@ const ns = "error-page";
     <img :src="withBase('/404.png')" :class="`${ns}__img`" alt="404" />
     <div :class="[`${ns}__detail`, 'flx-column']">
       <h2>404</h2>
-      <h4>抱歉，您访问的页面不存在~🤷‍♂️🤷‍♀️</h4>
+      <h4>你是不是走错地方了喵！🤷‍♂️🤷‍♀️</h4>
       <button @click="router.go('/')">返回首页</button>
     </div>
   </div>
