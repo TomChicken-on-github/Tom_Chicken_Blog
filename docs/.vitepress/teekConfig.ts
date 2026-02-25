@@ -11,8 +11,7 @@ export const teekConfig = defineTeekConfig({
   footerInfo: {
     customHtml: '<span id="runtime"></span>',
     topMessage: [
-      "<span>欢迎来到我的博客，正在持续建设中。</span>",
-      "<span>你可以按需替换这里的徽章、备案信息或版权信息。</span>",
+      "<span>欢迎来到我的博客，正在持续建设中喵。</span>",
     ],
     // 保留并展示主题版权，致谢开源贡献者
     theme: {
@@ -62,7 +61,7 @@ export const teekConfig = defineTeekConfig({
     slogan: "时よ止まれ、お前は美しい",
     avatar: "https://q1.qlogo.cn/g?b=qq&nk=2674407845&s=100",
     shape: "circle-rotate",
-    circleBgImg: "/blog/bg4.webp",
+    circleBgImg: "https://api.imlazy.ink/img-phone",
     circleBgMask: true,
     circleSize: 100,
     color: "#ffffff",
