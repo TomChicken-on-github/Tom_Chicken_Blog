@@ -11,7 +11,7 @@ const description = [
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   extends: teekConfig,
-  title: "Tom_Chicken Blog",
+  title: "Tom_ChickenのBlog",
   description: description,
   cleanUrls: false,
   lastUpdated: true,
@@ -24,8 +24,8 @@ export default defineConfig({
     ["link", { rel: "icon", type: "image/png", href: "/teek-logo-mini.png" }],
     ["meta", { property: "og:type", content: "website" }],
     ["meta", { property: "og:locale", content: "zh-CN" }],
-    ["meta", { property: "og:title", content: "Tom_Chicken Blog" }],
-    ["meta", { property: "og:site_name", content: "Tom_Chicken Blog" }],
+    ["meta", { property: "og:title", content: "Tom_ChickenのBlog" }],
+    ["meta", { property: "og:site_name", content: "Tom_ChickenのBlog" }],
     ["meta", { property: "og:image", content: "" }],
     ["meta", { property: "og:url", content: "https://blog.tomchicken.icu" }],
     ["meta", { property: "og:description", description }],
