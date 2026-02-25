@@ -1,7 +1,6 @@
 import { defineTeekConfig } from "vitepress-theme-teek/config";
 
 export const teekConfig = defineTeekConfig({
-<<<<<<< codex/modify-blog-to-teek-demo-style-qheff2
   teekHome: true,
   vpHome: false,
   loading: true,
@@ -9,15 +8,33 @@ export const teekConfig = defineTeekConfig({
     enabled: true,
     hideBanner: true,
   },
-=======
-  teekHome: true, // 是否开启博客首页
-  vpHome: false, // 是否隐藏 VP 首页
-  post: {
-    postStyle: "card", // 文章列表切换为博客卡片风格
+  footerInfo: {
+    customHtml: '<span id="runtime"></span>',
+    topMessage: [
+      "<span>欢迎来到我的博客，正在持续建设中。</span>",
+      "<span>你可以按需替换这里的徽章、备案信息或版权信息。</span>",
+    ],
+    // 保留并展示主题版权，致谢开源贡献者
+    theme: {
+      show: true,
+      name: "Teek",
+      link: "https://github.com/Kele-Bingtang/vitepress-theme-teek",
+    },
   },
-  sidebarTrigger: true, // 是否开启侧边栏折叠功能
-  author: { name: "Teeker", link: "https://github.com/Kele-Bingtang" },
->>>>>>> main
+  docAnalysis: {
+    // TODO: 改成你自己的建站日期
+    createTime: "2026-01-01",
+  },
+  friendLink: {
+    // 先保留结构，避免继续显示官方 demo 友情链接
+    list: [],
+    autoScroll: false,
+  },
+  social: [
+    {
+      icon: "icon-github",
+      name: "GitHub",
+      link: "https://github.com/yourname",
   footerInfo: {
     customHtml: '<span id="runtime"></span>',
     topMessage: [
@@ -118,18 +135,18 @@ export const teekConfig = defineTeekConfig({
   },
   homeCardListPosition: "left",
   banner: {
-    name: "🎉 Teek Blog",
+    name: "✨ 我的博客",
     bgStyle: "fullImg",
     imgSrc: ["/blog/bg1.webp", "/blog/bg2.webp", "/blog/bg3.webp"],
     description: [
-      "故事由我书写，旅程由你见证，传奇由她聆听 —— 来自 Young Kbt",
-      "积跬步以至千里，致敬每个爱学习的你 —— 来自 Evan Xu",
-      "这一生波澜壮阔或是不惊都没问题 —— 来自 Weibw",
+      "记录学习、思考与生活。",
+      "把长期主义写进每一篇文章。",
+      "欢迎来到我的数字花园。",
     ],
     descStyle: "types",
   },
   sidebarTrigger: true,
-  author: { name: "Teeker", link: "https://github.com/Kele-Bingtang" },
+  author: { name: "博主", link: "https://github.com/yourname" },
   codeBlock: {
     copiedDone: TkMessage => TkMessage.success("复制成功！"),
   },
