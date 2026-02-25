@@ -35,7 +35,7 @@ export const teekConfig = defineTeekConfig({
   },
   friendLink: {
     // 保留友链框架：先不展示默认站点，后续按你的链接逐条补充
-    title: "🤝 友情链接",
+    title: "${icon}友情链接",
     list: [
       // {
       //   name: "示例站点",
@@ -59,8 +59,8 @@ export const teekConfig = defineTeekConfig({
   homeCardListPosition: "left",
   blogger: {
     name: "Tom_Chicken",
-    slogan: "朝圣的使徒，正在走向编程的至高殿堂！",
-    avatar: "https://testingcf.jsdelivr.net/gh/Kele-Bingtang/static/user/avatar1.png",
+    slogan: "时よ止まれ、お前は美しい",
+    avatar: "https://q1.qlogo.cn/g?b=qq&nk=2674407845&s=100",
     shape: "circle-rotate",
     circleBgImg: "/blog/bg4.webp",
     circleBgMask: true,
