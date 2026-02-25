@@ -3,15 +3,15 @@ import llmstxt from "vitepress-plugin-llms";
 import { teekConfig } from "./teekConfig";
 
 const description = [
-  "欢迎来到 vitepress-theme-teek 使用文档",
-  "Teek 是一个基于 VitePress 构建的主题，是在默认主题的基础上进行拓展，支持 VitePress 的所有功能、配置",
-  "Teek 拥有三种典型的知识管理形态：结构化、碎片化、体系化，可以轻松构建一个结构化知识库，适用个人博客、文档站、知识库等场景",
+  "这是我的个人博客",
+  "基于 VitePress + Teek 主题搭建",
+  "你可以在这里记录文章、项目与知识笔记",
 ].toString();
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   extends: teekConfig,
-  title: "vitepress-theme-teek",
+  title: "我的博客",
   description: description,
   cleanUrls: false,
   lastUpdated: true,
@@ -24,13 +24,13 @@ export default defineConfig({
     ["link", { rel: "icon", type: "image/png", href: "/teek-logo-mini.png" }],
     ["meta", { property: "og:type", content: "website" }],
     ["meta", { property: "og:locale", content: "zh-CN" }],
-    ["meta", { property: "og:title", content: "Teek | VitePress Theme" }],
-    ["meta", { property: "og:site_name", content: "Teek" }],
+    ["meta", { property: "og:title", content: "我的博客" }],
+    ["meta", { property: "og:site_name", content: "我的博客" }],
     ["meta", { property: "og:image", content: "" }],
     ["meta", { property: "og:url", content: "" }],
     ["meta", { property: "og:description", description }],
     ["meta", { name: "description", description }],
-    ["meta", { name: "author", content: "Teek" }],
+    ["meta", { name: "author", content: "博主" }],
     // 禁止浏览器缩放
     // [
     //   "meta",
@@ -58,7 +58,7 @@ export default defineConfig({
     },
   },
   sitemap: {
-    hostname: "https://vp.teek.top", // ** 换成你的域名
+    hostname: "https://example.com", // TODO: 换成你的域名
     transformItems: (items) => {
       const permalinkItemBak: typeof items = [];
       // 使用永久链接生成 sitemap
@@ -74,7 +74,7 @@ export default defineConfig({
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    logo: "/teek-logo-mini.svg",
+    logo: "/teek-logo-mini.svg", // TODO: 替换为你的站点 Logo
     darkModeSwitchLabel: "主题",
     sidebarMenuLabel: "菜单",
     returnToTopLabel: "返回顶部",
@@ -115,7 +115,7 @@ export default defineConfig({
     socialLinks: [
       {
         icon: "github",
-        link: "https://github.com/Kele-Bingtang/vitepress-theme-teek",
+        link: "https://github.com/yourname",
       },
     ],
     search: {
@@ -124,7 +124,7 @@ export default defineConfig({
     editLink: {
       text: "在 GitHub 上编辑此页",
       pattern:
-        "https://github.com/Kele-Bingtang/vitepress-theme-teek/edit/master/docs/:path",
+        "https://github.com/yourname/your-repo/edit/main/docs/:path",
     },
   },
   vite: {
