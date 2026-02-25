@@ -64,6 +64,7 @@ export const teekConfig = defineTeekConfig({
     imgSrc: "https://api.imlazy.ink/img/",
     description: [
       "𝒞𝓲𝒶𝓵𝓁𝓸～ (∠・ω< )⌒★~",
+      "時よ止まれ、お前は美しい",
       "与你的日常，便是奇迹",
       "欢迎来到我的博客喵",
     ],
