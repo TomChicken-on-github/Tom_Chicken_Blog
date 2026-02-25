@@ -21,6 +21,14 @@ export const teekConfig = defineTeekConfig({
       link: "https://github.com/Kele-Bingtang/vitepress-theme-teek",
     },
   },
+  siteAnalytics: [
+    {
+      provider: "google",
+      options: {
+        id: "G-4R0BXB63KK",
+      },
+    },
+  ],
   docAnalysis: {
     // TODO: 改成你自己的建站日期
     createTime: "2026-01-01",
