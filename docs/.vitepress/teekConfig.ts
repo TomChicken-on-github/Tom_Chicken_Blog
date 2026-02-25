@@ -52,7 +52,8 @@ export const teekConfig = defineTeekConfig({
   banner: {
     name: "✨ Tom_Chicken Blog",
     bgStyle: "fullImg",
-    imgSrc: ["/blog/bg1.webp", "/blog/bg2.webp", "/blog/bg3.webp"],
+    // 随机图 API（GET https://cdn.imlazy.ink:233/img/）返回图片资源，用于首页 Banner 背景
+    imgSrc: "https://cdn.imlazy.ink:233/img/",
     description: [
       "记录学习、思考与生活。",
       "把长期主义写进每一篇文章。",
