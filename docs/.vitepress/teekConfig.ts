@@ -50,12 +50,12 @@ export const teekConfig = defineTeekConfig({
   },
   homeCardListPosition: "left",
   banner: {
-    name: "✨ Tom_Chicken Blog",
+    name: "✨ Tom_ChickenのBlog",
     bgStyle: "fullImg",
     // 雫 API（GET https://api.imlazy.ink/img/）返回图片资源，用于首页 Banner 背景
     imgSrc: "https://api.imlazy.ink/img/",
     description: [
-      "记录学习、思考与生活。",
+      "𝒞𝓲𝒶𝓵𝓁𝓸～ (∠・ω< )⌒★~",
       "把长期主义写进每一篇文章。",
       "欢迎来到我的数字花园。",
     ],
