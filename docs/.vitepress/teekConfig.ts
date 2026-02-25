@@ -26,8 +26,16 @@ export const teekConfig = defineTeekConfig({
     createTime: "2026-01-01",
   },
   friendLink: {
-    // 先保留结构，避免继续显示官方 demo 友情链接
-    list: [],
+    // 保留友链框架：先不展示默认站点，后续按你的链接逐条补充
+    title: "${icon}友情链接",
+    list: [
+      // {
+      //   name: "示例站点",
+      //   desc: "一句话介绍",
+      //   avatar: "https://example.com/avatar.png",
+      //   link: "https://example.com",
+      // },
+    ],
     autoScroll: false,
   },
   social: [
