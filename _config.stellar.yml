@@ -85,18 +85,20 @@ darkmode:
 comments:
   service: giscus
   giscus:
-    repo: "TomChicken-on-github/Tom_Chicken_Blog"
-    repoId: "R_kgDOQzaoQg"
-    category: "General"
-    categoryId: "DIC_kwDOQzaoQs4C3Pnl"
-    mapping: "pathname"
-    strict: "0"                    # ← 在这一行下面添加
-    reactionsEnabled: "1"
-    emitMetadata: "0"
-    inputPosition: "top"
-    theme: "preferred_color_scheme"
-    lang: "zh-CN"
-    loading: "lazy"
+    src: "https://giscus.app/client.js"
+    data-repo: "TomChicken-on-github/Tom_Chicken_Blog"
+    data-repo-id: "R_kgDOQzaoQg"
+    data-category: "General"
+    data-category-id: "DIC_kwDOQzaoQs4C3Pnl"
+    data-mapping: "pathname"
+    data-strict: "0"
+    data-reactions-enabled: "1"
+    data-emit-metadata: "0"
+    data-input-position: "top"
+    data-theme: "preferred_color_scheme"
+    data-lang: "zh-CN"
+    data-loading: "lazy"
+    crossorigin: "anonymous"
     
   # 或者用 Waline（自建服务，功能更丰富）
   # service: waline
