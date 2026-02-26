@@ -34,11 +34,12 @@ cover:
     - icon: fa-brands fa-twitter
       url: https://x.com/Tom_Chicken114
       desc: Twitter
+    - icon: fa-brands fa-qq      
 
 # 作者信息（显示在文章页侧边栏）
 author:
   name: Tom_Chicken
-  avatar: https://cravatar.cn/avatar/your-email-md5?d=mp  # 推荐：使用 Cravatar（国内快）或 Gravatar
+  avatar: https://q1.qlogo.cn/g?b=qq&nk=2674407845&s=640 #头像
   # 或者本地图片：/images/avatar.png
   description: 时よ止まれ、お前は美しい
   location: 上海  # 可选，显示位置图标
@@ -81,17 +82,20 @@ darkmode:
 
 # 评论系统（二选一，推荐 giscus 免服务器）
 comments:
-  # 使用 Giscus（基于 GitHub Discussions，免费稳定）
   service: giscus
   giscus:
-    repo: yourusername/blog-comments      # 改成：你的用户名/仓库名（专门存评论的仓库）
-    repoId:                               # 去 giscus.app 生成
-    category: Announcements               # 仓库里的 Discussion 分类
-    categoryId:                           # 去 giscus.app 生成
-    mapping: pathname                     # 根据文章路径映射讨论区
-    reactionsEnabled: '1'
-    emitMetadata: '0'
-    theme: preferred_color_scheme         # 自动跟随暗色模式
+    repo: "TomChicken-on-github/Tom_Chicken_Blog"
+    repoId: "R_kgDOQzaoQg"
+    category: "General"
+    categoryId: "DIC_kwDOQzaoQs4C3Pnl"
+    mapping: "pathname"
+    strict: "0"                    # ← 在这一行下面添加
+    reactionsEnabled: "1"
+    emitMetadata: "0"
+    inputPosition: "top"
+    theme: "preferred_color_scheme"
+    lang: "zh-CN"
+    loading: "lazy"
     
   # 或者用 Waline（自建服务，功能更丰富）
   # service: waline
@@ -150,9 +154,9 @@ share:
 friends:
   layout: flow  # 瀑布流布局
   items:
-    - title: 示例站点
-      url: https://example.com
-      description: 一个优秀的博客
+    - title: WSMCS
+      url: https://www.wsmcs.top
+      description: 繁星之望MC服务器
       avatar: https://example.com/avatar.jpg
       # 如果开启了订阅验证
       # feed: https://example.com/atom.xml
