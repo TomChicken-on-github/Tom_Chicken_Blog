@@ -1,0 +1,158 @@
+######## Tom_Chicken's Blog Stellar Theme Config ########
+
+# 基础导航栏
+nav:
+  menu:
+    首页: /
+    归档: /archives/
+    标签: /tags/
+    关于: /about/
+    友链: /friends/
+  # 右侧图标按钮
+  icons:
+    github: https://github.com/TomChicken-on-github  # 改成你的 GitHub
+    mail: mailto:TomChicken114@gmail.com              # 改成你的邮箱
+    rss: /atom.xml                           # 自动生成 RSS
+
+# 首页封面配置
+cover:
+  title: Tom_Chicken's Blog
+  subtitle: 時よ止まれ、お前は美しい
+  # 封面背景图（可放 source/images/cover.jpg 或使用外链）
+  background: https://api.imlazy.ink/img
+  # 向下滚动提示
+  scroll_down_icon: fa-solid fa-chevron-down
+  
+  # 封面社交链接（可选，如果不需要注释掉 social 部分）
+  social:
+    - icon: fa-brands fa-github
+      url: https://github.com/TomChicken-on-github
+      desc: GitHub
+    - icon: fa-solid fa-envelope
+      url: mailto:TomChicken114@gmail.com
+      desc: Email
+    - icon: fa-brands fa-twitter
+      url: https://x.com/Tom_Chicken114
+      desc: Twitter
+
+# 作者信息（显示在文章页侧边栏）
+author:
+  name: Tom_Chicken
+  avatar: https://cravatar.cn/avatar/your-email-md5?d=mp  # 推荐：使用 Cravatar（国内快）或 Gravatar
+  # 或者本地图片：/images/avatar.png
+  description: 时よ止まれ、お前は美しい
+  location: 上海  # 可选，显示位置图标
+
+# 侧边栏小组件
+widgets:
+  # 文章页右侧显示作者信息
+  author: true
+  # 显示目录（TOC）
+  toc: true
+  # 显示相关文章
+  related: true
+  
+# 文章列表布局
+index:
+  # 文章摘要长度（字符数）
+  excerpt_length: 200
+  # 每页显示文章数（与 _config.yml 同步）
+  per_page: 10
+  
+# 代码高亮（与 highlight.js 配合）
+codeblock:
+  # 复制按钮
+  copy_btn: true
+  # 显示语言标签
+  language: true
+  # 主题：default / mac / mac-dark（Stellar 内置）
+  theme: mac-dark
+  #  prismjs 高亮（如果你用 prismjs 替代 highlight.js）
+  prismjs:
+    light: one-light
+    dark: one-dark
+
+# 暗色模式
+darkmode:
+  # 默认 auto（跟随系统），可选：true（默认暗色）、false（默认亮色）
+  default: auto
+  # 切换按钮位置
+  btn: true
+
+# 评论系统（二选一，推荐 giscus 免服务器）
+comments:
+  # 使用 Giscus（基于 GitHub Discussions，免费稳定）
+  service: giscus
+  giscus:
+    repo: yourusername/blog-comments      # 改成：你的用户名/仓库名（专门存评论的仓库）
+    repoId:                               # 去 giscus.app 生成
+    category: Announcements               # 仓库里的 Discussion 分类
+    categoryId:                           # 去 giscus.app 生成
+    mapping: pathname                     # 根据文章路径映射讨论区
+    reactionsEnabled: '1'
+    emitMetadata: '0'
+    theme: preferred_color_scheme         # 自动跟随暗色模式
+    
+  # 或者用 Waline（自建服务，功能更丰富）
+  # service: waline
+  # waline:
+  #   serverURL: https://your-waline.vercel.app  # 你的 Waline 服务地址
+
+# 搜索功能（需安装 hexo-generator-search）
+search:
+  enable: true
+  # 搜索范围：post / page / all
+  type: post
+  placeholder: 搜索文章...
+
+# 页脚配置
+footer:
+  # 版权信息
+  copyright: '© 2024 - 2026 Tom_Chicken'
+  # 备案号（如果有）
+  # icp: 京ICP备xxxx号
+  # 页脚链接
+  links:
+    Hexo: https://hexo.io
+    Stellar: https://github.com/xaoxuu/hexo-theme-stellar
+    Cloudflare: https://cloudflare.com
+
+# 性能优化（Cloudflare Pages 已压缩，此处可选）
+performance:
+  # 图片懒加载
+  lazyload: true
+  # 是否使用 CDN 加速（Cloudflare 本身够快，可关闭）
+  use_cdn: false
+
+# 数学公式（按需开启，需要文章 front-matter 设置 math: true）
+math:
+  enable: false  # 默认关闭，需要时开启
+  per_page: true
+  
+# Mermaid 图表（流程图等）
+mermaid:
+  enable: true
+  
+# 特效（适度使用，不要影响阅读）
+effects:
+  # 樱花飘落特效（可选）
+  # sakura: true
+  # 鼠标点击特效
+  # click: love
+  
+# 文章分享按钮
+share:
+  enable: true
+  twitter: true
+  weibo: true
+
+# 友链页面配置（如果使用 /friends/）
+friends:
+  layout: flow  # 瀑布流布局
+  items:
+    - title: 示例站点
+      url: https://example.com
+      description: 一个优秀的博客
+      avatar: https://example.com/avatar.jpg
+      # 如果开启了订阅验证
+      # feed: https://example.com/atom.xml
