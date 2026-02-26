@@ -3,22 +3,27 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle: ''
-description: ''
-keywords:
-author: John Doe
-language: en
-timezone: ''
+title: Tom_Chicken's Blog
+subtitle: '時よ止まれ、お前は美しい'
+description: 'Tom_Chicken的博客，记录技术和生活点滴'
+keywords:                       # 改为数组格式，SEO 关键词
+  - Tom_Chicken
+  - Blog
+  - 博客
+  - 技术
+  - 生活
+author: Tom_Chicken
+language: zh-CN
+timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: https://blog.tomchicken.icu
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
-  trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
-  trailing_html: true # Set to false to remove trailing '.html' from permalinks
+  trailing_index: false # Set to false to remove trailing 'index.html' from permalinks
+  trailing_html: false # Set to false to remove trailing '.html' from permalinks
 
 # Directory
 source_dir: source
@@ -28,7 +33,12 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
-skip_render:
+skip_render:                    # 跳过这些文件，不生成 HTML
+  - README.md
+  - LICENSE
+  - CHANGELOG.md
+  - '.github/**/*'
+  - '_config.*.yml'             # 防止意外渲染配置文件
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -40,7 +50,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true1
 relative_link: false
 future: true
 syntax_highlighter: highlight.js
