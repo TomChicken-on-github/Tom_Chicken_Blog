@@ -84,6 +84,7 @@ export const profileConfig: ProfileConfig = {
 			icon: "fa6-brands:discord",
 			url: "http://discordapp.com/users/tom_chicken114514",
 		},
+		
 		{
 			name: "Email",
 			icon: "fa6-solid:envelope",
