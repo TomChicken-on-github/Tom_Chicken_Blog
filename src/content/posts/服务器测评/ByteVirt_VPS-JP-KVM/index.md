@@ -81,6 +81,10 @@ IPV4解锁不错
 
  ![image](https://i.111666.best/image/NeW6grGGHmfvsOyoEEg12R.webp)
 
+## BGP信息
+
+![image](./BGP.png)
+
 ## 🌐网络质量
 
 :::note
