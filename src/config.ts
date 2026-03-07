@@ -58,11 +58,21 @@ export const profileConfig: ProfileConfig = {
 	bio: "時よ止まれ、お前は美しい",
 	links: [
 		{
-			name: "Twitter",
-			icon: "fa6-brands:twitter", // Visit https://icones.js.org/ for icon codes
+			name: "GitHub",
+			icon: "fa6-brands:github", // Visit https://icones.js.org/ for icon codes
 			// You will need to install the corresponding icon set if it's not already included
 			// `pnpm add @iconify-json/<icon-set-name>`
+			url: "https://github.com/TomChicken-on-github/Tom_Chicken_Blog",
+		},
+		{
+			name: "Twitter",
+			icon: "fa6-brands:x-twitter",
 			url: "https://x.com/Tom_Chicken114",
+		},
+		{
+			name: "Telegram",
+			icon: "fa6-brands:telegram",
+			url: "https://t.me/Tom_Chicken",
 		},
 		{
 			name: "Steam",
@@ -70,9 +80,14 @@ export const profileConfig: ProfileConfig = {
 			url: "https://steamcommunity.com/id/Tom_Chicken/",
 		},
 		{
-			name: "GitHub",
-			icon: "fa6-brands:github",
-			url: "https://github.com/TomChicken-on-github/Tom_Chicken_Blog",
+			name: "Discord",
+			icon: "fa6-brands:discord",
+			url: "http://discordapp.com/users/tom_chicken114514",
+		},
+		{
+			name: "Email",
+			icon: "fa6-solid:envelope",
+			url: "mailto:TomChicken114@gmail.com",
 		},
 	],
 };
