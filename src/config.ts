@@ -85,6 +85,11 @@ export const profileConfig: ProfileConfig = {
 			url: "http://discordapp.com/users/tom_chicken114514",
 		},
 		{
+			name: "QQ",
+			icon: "fa6-brands:qq",
+			url: "https://qm.qq.com/q/EDEkjS62pq",
+		},
+		{
 			name: "Email",
 			icon: "fa6-solid:envelope",
 			url: "mailto:Tom_Chicken@qq.com",
