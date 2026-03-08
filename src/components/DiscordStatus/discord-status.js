@@ -8,6 +8,7 @@ class DiscordStatus extends HTMLElement {
     this.ws = null;
     this.heartbeat = null;
     this.progressTimers = new Map();
+    this.lastActivityKey = null;
     this.userId = '1109821913498407042';
     this.avatarHash = '627069fe38fef6f76b72a7f67f4cf148';
   }
@@ -189,11 +190,22 @@ class DiscordStatus extends HTMLElement {
     // 过滤掉自定义状态 (type 4)，保留游戏(0)和音乐(2)
     const activities = (data.activities || []).filter(a => a.type !== 4).slice(0, 2);
     
+    // 检测活动是否发生变化（歌曲切换）
+    const currentActivityKey = activities.map(a => `${a.name}-${a.details}-${a.state}`).join('|');
+    if (this.lastActivityKey && this.lastActivityKey !== currentActivityKey) {
+      console.log('[DiscordStatus] Activity changed, re-rendering...');
+      // 活动变化时强制完全重新渲染
+      this.clearProgressTimers();
+    }
+    this.lastActivityKey = currentActivityKey;
+    
     // 清理旧的进度条定时器
     this.clearProgressTimers();
 
-    // 构建活动 HTML
+    // 构建活动 HTML - 使用活动唯一标识作为 key
     const activitiesHtml = activities.map((act, idx) => {
+      // 生成活动唯一标识（用于检测歌曲切换）
+      const activityId = `${act.name}-${act.details || ''}-${act.state || ''}-${act.timestamps?.start || 0}`;
       const isMusic = act.type === 2;
       const icon = this.getActivityIcon(act.name, act.type);
       
@@ -214,11 +226,12 @@ class DiscordStatus extends HTMLElement {
       // 音乐进度条或游戏已用时间
       let timeHtml = '';
       if (act.timestamps?.start) {
-        const timeId = `discord-time-${idx}`;
+        // 使用活动唯一标识生成 DOM ID，避免歌曲切换时 ID 冲突
+        const timeId = `discord-time-${idx}-${activityId.replace(/[^a-zA-Z0-9]/g, '-')}`;
         
         if (isMusic && act.timestamps?.end) {
           // 音乐：显示进度条
-          const progressId = `discord-progress-${idx}`;
+          const progressId = `discord-progress-${idx}-${activityId.replace(/[^a-zA-Z0-9]/g, '-')}`;
           timeHtml = `
             <div class="music-progress">
               <div class="progress-bar-bg">
@@ -247,6 +260,12 @@ class DiscordStatus extends HTMLElement {
               if (pct >= 100) {
                 const timer = this.progressTimers.get(idx);
                 if (timer) clearInterval(timer);
+                // 歌曲播放完后等待2秒给API更新时间，然后刷新
+                console.log('[DiscordStatus] Song finished, waiting 2s for API update...');
+                setTimeout(() => {
+                  console.log('[DiscordStatus] Refreshing data...');
+                  this.fetchInitialData();
+                }, 2000);
               }
             };
             
