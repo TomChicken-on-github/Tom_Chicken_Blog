@@ -1,12 +1,16 @@
-/* Discord Status Card Styles - 左右分栏布局 */
+/* Discord Status Card Styles - 性能优化版本 */
+
+/* 容器 */
 discord-status {
   display: block;
   width: 100%;
   max-width: 720px;
   margin: 1.5rem auto;
+  content-visibility: auto;
+  contain-intrinsic-size: 0 200px;
 }
 
-/* 外层大卡片 */
+/* 外层大卡片 - 使用 contain 优化渲染 */
 .discord-card {
   background: var(--card-bg, #ffffff);
   border: 1px solid var(--card-border, #e5e7eb);
@@ -14,8 +18,15 @@ discord-status {
   padding: 1.5rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   font-family: system-ui, -apple-system, sans-serif;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
+  contain: layout style paint;
+  will-change: transform;
+}
+
+.discord-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 12px -2px rgba(0, 0, 0, 0.15);
 }
 
 /* 内部分栏容器 */
@@ -53,7 +64,7 @@ discord-status {
   }
 }
 
-/* Discord Logo */
+/* Discord Logo - GPU 加速 */
 .discord-logo {
   position: absolute;
   bottom: 0.75rem;
@@ -63,14 +74,19 @@ discord-status {
   opacity: 0.3;
   transition: opacity 0.3s ease;
   color: var(--text-secondary, #6b7280);
+  will-change: opacity;
+  transform: translateZ(0);
 }
+
 .discord-logo:hover {
   opacity: 0.6;
 }
 
+/* 头像区域 */
 .avatar-wrapper {
   position: relative;
   margin-bottom: 0.75rem;
+  contain: layout;
 }
 
 .discord-avatar-img {
@@ -79,6 +95,9 @@ discord-status {
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid var(--card-border, #e5e7eb);
+  background-color: var(--activity-bg, #f3f4f6);
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .status-indicator {
@@ -89,14 +108,17 @@ discord-status {
   height: 1.25rem;
   border-radius: 50%;
   border: 3px solid var(--card-bg, #ffffff);
+  contain: strict;
 }
 
+/* 文字样式 - 优化渲染 */
 .discord-display-name {
   font-size: 1rem;
   font-weight: 700;
   color: var(--text-primary, #111827);
   margin: 0;
   word-break: break-all;
+  text-rendering: optimizeLegibility;
 }
 
 .discord-username {
@@ -121,10 +143,12 @@ discord-status {
   margin: 0.75rem 0;
 }
 
+/* 活动区域 */
 .discord-activities {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  contain: layout;
 }
 
 .activity-item {
@@ -134,6 +158,12 @@ discord-status {
   background: var(--activity-bg, #f9fafb);
   border: 1px solid var(--activity-border, #f3f4f6);
   border-radius: 0.75rem;
+  transition: background-color 0.2s ease;
+  contain: layout;
+}
+
+.activity-item:hover {
+  background: var(--activity-bg-hover, #f3f4f6);
 }
 
 .activity-img {
@@ -142,6 +172,7 @@ discord-status {
   border-radius: 0.5rem;
   object-fit: cover;
   flex-shrink: 0;
+  background-color: var(--activity-border, #e5e7eb);
 }
 
 .activity-icon-fallback {
@@ -159,6 +190,7 @@ discord-status {
 .activity-content {
   flex: 1;
   min-width: 0;
+  contain: layout;
 }
 
 .activity-name {
@@ -166,6 +198,7 @@ discord-status {
   font-size: 0.875rem;
   color: var(--text-primary, #111827);
   margin: 0;
+  text-rendering: optimizeLegibility;
 }
 
 .activity-details,
@@ -175,8 +208,10 @@ discord-status {
   margin-top: 0.25rem;
 }
 
+/* 音乐进度条 - GPU 加速 */
 .music-progress {
   margin-top: 0.5rem;
+  contain: layout;
 }
 
 .progress-bar-bg {
@@ -190,21 +225,25 @@ discord-status {
   height: 100%;
   background: #5865f2;
   border-radius: 9999px;
-  transition: width 1s linear;
+  will-change: width;
+  transform: translateZ(0);
 }
 
+/* 时间显示 - 等宽数字 */
 .time-display {
   font-size: 0.625rem;
   color: var(--text-muted, #9ca3af);
   margin-top: 0.25rem;
-  font-family: monospace;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-variant-numeric: tabular-nums;
 }
 
 .elapsed-time {
   font-size: 0.75rem;
   color: #23a55a;
   margin-top: 0.25rem;
-  font-family: monospace;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-variant-numeric: tabular-nums;
   font-weight: 500;
 }
 
@@ -216,6 +255,7 @@ discord-status {
   font-style: italic;
 }
 
+/* 客户端标签 */
 .client-tags {
   display: flex;
   flex-wrap: wrap;
@@ -231,7 +271,7 @@ discord-status {
   border-radius: 9999px;
 }
 
-/* Skeleton Loading */
+/* Skeleton Loading - 优化动画性能 */
 .discord-skeleton .discord-avatar {
   width: 5rem;
   height: 5rem;
@@ -240,6 +280,7 @@ discord-status {
   background-size: 200% 100%;
   animation: skeleton-loading 1.5s infinite;
   margin-bottom: 0.75rem;
+  will-change: background-position;
 }
 
 .skeleton-line {
@@ -249,6 +290,7 @@ discord-status {
   animation: skeleton-loading 1.5s infinite;
   border-radius: 0.25rem;
   margin: 0.5rem 0;
+  will-change: background-position;
 }
 
 @keyframes skeleton-loading {
@@ -256,6 +298,24 @@ discord-status {
   100% { background-position: -200% 0; }
 }
 
+/* 减少动画偏好 */
+@media (prefers-reduced-motion: reduce) {
+  .discord-card,
+  .discord-logo,
+  .activity-item,
+  .progress-bar-fill {
+    transition: none;
+    animation: none;
+  }
+  
+  .discord-skeleton .discord-avatar,
+  .skeleton-line {
+    animation: none;
+    background: #e5e7eb;
+  }
+}
+
+/* 错误状态 */
 .discord-error {
   padding: 2rem;
   text-align: center;
@@ -273,6 +333,9 @@ discord-status {
   --text-primary: #f2f3f5;
   --text-secondary: #b5bac1;
   --text-muted: #949ba4;
+  --activity-bg: #383a40;
+  --activity-bg-hover: #404249;
+  --activity-border: #404249;
 }
 
 .dark .activity-item {
@@ -290,4 +353,11 @@ discord-status {
 .dark .skeleton-line {
   background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
   background-size: 200% 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dark .discord-skeleton .discord-avatar,
+  .dark .skeleton-line {
+    background: #374151;
+  }
 }
