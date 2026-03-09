@@ -1,5 +1,6 @@
 ---
 import path from "node:path";
+import GiscusComment from "@components/misc/GiscusComment.astro";
 import License from "@components/misc/License.astro";
 import Markdown from "@components/misc/Markdown.astro";
 import I18nKey from "@i18n/i18nKey";
@@ -131,6 +132,21 @@ const jsonLd = {
                 <Icon name="material-symbols:chevron-right-rounded" class="text-[2rem] text-[var(--primary)]" />
             </div>}
         </a>
+    </div>
+
+    <!-- Giscus Comments -->
+    <div class="card-base rounded-[var(--radius-large)] px-6 md:px-9 py-6">
+        <GiscusComment
+            repo="TomChicken-on-github/Tom_Chicken_Blog"
+            repoId="R_kgDOQzaoQg"
+            category="General"
+            categoryId="DIC_kwDOQzaoQs4C3Pnl"
+            mapping="pathname"
+            reactionsEnabled={true}
+            emitMetadata={false}
+            inputPosition="top"
+            lang="zh-CN"
+        />
     </div>
 
 </MainGridLayout>
