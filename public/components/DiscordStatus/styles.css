@@ -255,6 +255,22 @@ discord-status {
   font-style: italic;
 }
 
+/* 历史活动样式 */
+.activity-item-history {
+  opacity: 0.65;
+  background: transparent;
+  border-style: dashed;
+}
+
+.activity-history-time {
+  font-size: 0.7rem;
+  color: var(--text-muted, #9ca3af);
+  margin-top: 0.5rem;
+  text-align: right;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
 /* 客户端标签 */
 .client-tags {
   display: flex;

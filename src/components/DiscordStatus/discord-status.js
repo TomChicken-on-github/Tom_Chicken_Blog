@@ -35,6 +35,7 @@ class DiscordStatus extends HTMLElement {
     progressUpdateInterval: 1000,
     songEndDelay: 2000,
     pollInterval: 30000, // 降级轮询间隔
+    localStorageKey: 'dc_last',
     statusConfigs: Object.freeze({
       online: { color: '#23a55a', text: 'Online', class: 'status-online' },
       idle: { color: '#f0b232', text: 'Idle', class: 'status-idle' },
@@ -391,9 +392,22 @@ class DiscordStatus extends HTMLElement {
     }
 
     const user = data.discord_user;
+    const isOffline = data.discord_status === 'offline';
     const status = DiscordStatus.CONFIG.statusConfigs[data.discord_status] || 
                    DiscordStatus.CONFIG.statusConfigs.offline;
-    const activities = (data.activities || []).filter(a => a.type !== 4).slice(0, 2);
+    let activities = (data.activities || []).filter(a => a.type !== 4).slice(0, 2);
+    let historyData = null;
+
+    if (isOffline) {
+      // 离线时读取历史记录
+      historyData = this._loadLastActivity();
+      if (historyData) {
+        activities = [historyData.act];
+      }
+    } else if (activities.length > 0) {
+      // 在线且有活动时保存最后活动
+      this._saveLastActivity(activities[0]);
+    }
 
     // 检查活动是否变化
     const currentKey = activities.map(a => `${a.name}-${a.details}-${a.state}`).join('|');
@@ -404,23 +418,25 @@ class DiscordStatus extends HTMLElement {
 
     // 使用 DocumentFragment 构建 DOM
     const fragment = document.createDocumentFragment();
-    const card = this._createCard(user, status, activities, data);
+    const card = this._createCard(user, status, activities, data, !!historyData, historyData?.t);
     fragment.appendChild(card);
     
     this.innerHTML = '';
     this.appendChild(fragment);
     
-    // 启动活动更新
-    activities.forEach((act, idx) => {
-      if (act.timestamps?.start) {
-        this._startActivityTimer(act, idx);
-      }
-    });
+    // 启动活动更新（仅非历史活动）
+    if (!historyData) {
+      activities.forEach((act, idx) => {
+        if (act.timestamps?.start) {
+          this._startActivityTimer(act, idx);
+        }
+      });
+    }
   }
 
   // ============ DOM 创建 ============
 
-  _createCard(user, status, activities, data) {
+  _createCard(user, status, activities, data, isHistory = false, historyTimestamp = null) {
     const card = document.createElement('div');
     card.className = 'discord-card';
     
@@ -437,7 +453,7 @@ class DiscordStatus extends HTMLElement {
     inner.appendChild(this._createUserSection(user, status, data));
     
     // 右侧活动
-    inner.appendChild(this._createActivitiesSection(activities));
+    inner.appendChild(this._createActivitiesSection(activities, isHistory, historyTimestamp));
     
     card.appendChild(inner);
     return card;
@@ -508,7 +524,7 @@ class DiscordStatus extends HTMLElement {
     return section;
   }
 
-  _createActivitiesSection(activities) {
+  _createActivitiesSection(activities, isHistory = false, historyTimestamp = null) {
     const section = document.createElement('div');
     section.className = 'discord-right';
     
@@ -522,7 +538,7 @@ class DiscordStatus extends HTMLElement {
       container.appendChild(empty);
     } else {
       activities.forEach((act, idx) => {
-        container.appendChild(this._createActivityElement(act, idx));
+        container.appendChild(this._createActivityElement(act, idx, isHistory, historyTimestamp));
       });
     }
     
@@ -530,13 +546,15 @@ class DiscordStatus extends HTMLElement {
     return section;
   }
 
-  _createActivityElement(act, idx) {
+  _createActivityElement(act, idx, isHistory = false, historyTimestamp = null) {
     const activityId = `act-${idx}-${act.name.slice(0, 10)}-${(act.timestamps?.start || 0) % 10000}`;
     const isMusic = act.type === 2;
     
     const item = document.createElement('div');
-    item.className = 'activity-item';
-    item.dataset.activityId = activityId;
+    item.className = isHistory ? 'activity-item activity-item-history' : 'activity-item';
+    if (!isHistory) {
+      item.dataset.activityId = activityId;
+    }
     
     // 图片
     const imgUrl = this._getActivityImageUrl(act);
@@ -577,8 +595,8 @@ class DiscordStatus extends HTMLElement {
       content.appendChild(state);
     }
     
-    // 时间/进度
-    if (act.timestamps?.start) {
+    // 时间/进度（仅非历史模式）
+    if (!isHistory && act.timestamps?.start) {
       if (isMusic && act.timestamps?.end) {
         const progress = document.createElement('div');
         progress.className = 'music-progress';
@@ -596,6 +614,14 @@ class DiscordStatus extends HTMLElement {
         elapsed.textContent = '🎮 0:00:00';
         content.appendChild(elapsed);
       }
+    }
+    
+    // 历史时间戳 subtle tag
+    if (isHistory && historyTimestamp) {
+      const timeTag = document.createElement('div');
+      timeTag.className = 'activity-history-time';
+      timeTag.textContent = `🕐 ${this._formatDateTime(historyTimestamp)}`;
+      content.appendChild(timeTag);
     }
     
     item.appendChild(content);
@@ -708,6 +734,48 @@ class DiscordStatus extends HTMLElement {
       clearInterval(timer);
       this.progressTimers.delete(activityId);
     }
+  }
+
+  // ============ 历史记录管理 ============
+
+  _saveLastActivity(act) {
+    try {
+      const data = {
+        t: Date.now(),
+        act: act
+      };
+      localStorage.setItem(DiscordStatus.CONFIG.localStorageKey, JSON.stringify(data));
+    } catch (e) {
+      // 静默失败，不影响主功能
+      console.debug('[DiscordStatus] Failed to save last activity:', e);
+    }
+  }
+
+  _loadLastActivity() {
+    try {
+      const raw = localStorage.getItem(DiscordStatus.CONFIG.localStorageKey);
+      if (!raw) return null;
+      const data = JSON.parse(raw);
+      // 简单校验
+      if (data && data.t && data.act) {
+        return data;
+      }
+      return null;
+    } catch (e) {
+      console.debug('[DiscordStatus] Failed to load last activity:', e);
+      return null;
+    }
+  }
+
+  _formatDateTime(timestamp) {
+    const date = new Date(timestamp);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+    return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
   }
 }
 
