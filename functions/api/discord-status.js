@@ -71,13 +71,29 @@ async function fetchAndCache(env) {
       if (!result.t) {
         result.t = Date.now();
       }
-    } else {
-      // 在线时保存当前状态
+    } else if (activities.length > 0) {
+      // 在线且有活动时，保存当前状态
       result = {
         t: Date.now(),
         status: data.discord_status,
-        act: activities[0] || null,
+        act: activities[0],
         activities: activities,
+        _cached_at: Date.now(),
+      };
+    } else if (existing) {
+      // 在线但无活动，保留现有缓存（只更新时间戳）
+      result = {
+        ...existing,
+        status: data.discord_status,
+        _cached_at: Date.now(),
+      };
+    } else {
+      // 在线但无活动，且没有历史记录
+      result = {
+        t: Date.now(),
+        status: data.discord_status,
+        act: null,
+        activities: [],
         _cached_at: Date.now(),
       };
     }
