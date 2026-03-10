@@ -21,7 +21,11 @@ interface Post {
 		tags: string[];
 		category?: string;
 		published: Date;
-		[key: string]: any;
+		description?: string;
+		image?: string;
+		draft?: boolean;
+		updated?: Date;
+		lang?: string;
 	};
 }
 

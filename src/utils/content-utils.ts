@@ -33,7 +33,7 @@ export async function getSortedPosts() {
 }
 export type PostForList = {
 	slug: string;
-	data: Omit<CollectionEntry<"posts">["data"], 'category'> & {
+	data: Omit<CollectionEntry<"posts">["data"], "category"> & {
 		category?: string;
 	};
 };
