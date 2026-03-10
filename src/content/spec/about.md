@@ -37,7 +37,8 @@
 <!-- Discord 实时状态卡片 -->
 <discord-status 
   data-user-id="1109821913498407042" 
-  data-avatar="627069fe38fef6f76b72a7f67f4cf148">
+  data-avatar="627069fe38fef6f76b72a7f67f4cf148"
+  data-worker-url="/api/discord-status">
 </discord-status>
 
 ---

@@ -35,6 +35,7 @@ class DiscordStatus extends HTMLElement {
     progressUpdateInterval: 1000,
     songEndDelay: 2000,
     pollInterval: 30000, // 降级轮询间隔
+    workerUrl: 'https://discord-status.tomchicken-blog.workers.dev',  // Worker API 地址
     localStorageKey: 'dc_last',
     statusConfigs: Object.freeze({
       online: { color: '#23a55a', text: 'Online', class: 'status-online' },
@@ -70,6 +71,7 @@ class DiscordStatus extends HTMLElement {
     // 配置
     this.userId = '1109821913498407042';
     this.avatarHash = '627069fe38fef6f76b72a7f67f4cf148';
+    this.workerUrl = DiscordStatus.CONFIG.workerUrl;
     
     // 状态追踪
     this._lastActivityKey = '';
@@ -77,6 +79,8 @@ class DiscordStatus extends HTMLElement {
     this._isVisible = true;
     this._isInViewport = false;
     this._hasError = false;
+    this._historyData = null;  // 从 Worker 获取的历史数据
+    this._historyFetched = false;  // 是否已获取过历史
     
     // 缓存的 DOM 元素
     this._rootElement = null;
@@ -97,6 +101,7 @@ class DiscordStatus extends HTMLElement {
   connectedCallback() {
     this.userId = this.getAttribute('data-user-id') || this.userId;
     this.avatarHash = this.getAttribute('data-avatar') || this.avatarHash;
+    this.workerUrl = this.getAttribute('data-worker-url') || this.workerUrl;
     
     this._renderSkeleton();
     this._setupObservers();
@@ -384,7 +389,7 @@ class DiscordStatus extends HTMLElement {
     this._throttledRender(data);
   }
 
-  _renderUnsafe(data) {
+  async _renderUnsafe(data) {
     // 页面不可见时暂停渲染（但保留数据）
     if (!this._isVisible) {
       this._pendingData = data;
@@ -399,14 +404,15 @@ class DiscordStatus extends HTMLElement {
     let historyData = null;
 
     if (isOffline) {
-      // 离线时读取历史记录
-      historyData = this._loadLastActivity();
-      if (historyData) {
+      // 离线时从 Worker 获取历史记录
+      if (!this._historyFetched) {
+        this._historyData = await this._fetchHistoryFromWorker();
+        this._historyFetched = true;
+      }
+      historyData = this._historyData;
+      if (historyData?.act) {
         activities = [historyData.act];
       }
-    } else if (activities.length > 0) {
-      // 在线且有活动时保存最后活动
-      this._saveLastActivity(activities[0]);
     }
 
     // 检查活动是否变化
@@ -737,6 +743,20 @@ class DiscordStatus extends HTMLElement {
   }
 
   // ============ 历史记录管理 ============
+
+  async _fetchHistoryFromWorker() {
+    try {
+      const res = await fetch(this.workerUrl, {
+        method: 'GET',
+        headers: { 'Accept': 'application/json' },
+      });
+      if (!res.ok) return null;
+      return await res.json();
+    } catch (err) {
+      console.debug('[DiscordStatus] Failed to fetch history:', err);
+      return null;
+    }
+  }
 
   _saveLastActivity(act) {
     try {
