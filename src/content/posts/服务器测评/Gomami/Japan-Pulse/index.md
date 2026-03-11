@@ -119,7 +119,7 @@ Full Test       | https://browser.geekbench.com/v5/cpu/23945017
 广播IP 还算不错 如果你没有什么特殊 ( 比如 `tk 运营`之类的账号运营 ) 的话不用套落地
 :::
 
- ![image](https://i.111666.best/image/iuViyAyj4Xnmqr6YbIufdt.webp)
+ ![image](./IPQuality.webp)
 
 ## BGP 信息
 :::note
@@ -134,7 +134,7 @@ Full Test       | https://browser.geekbench.com/v5/cpu/23945017
 
 ## 🌐网络质量
 
- ![image](https://i.111666.best/image/xAvCZnwG8twbuf3u2e94E9.webp)
+ ![image](./NetQuality.webp)
 
 ## 📍回程路由
 :::note
@@ -142,5 +142,5 @@ Full Test       | https://browser.geekbench.com/v5/cpu/23945017
 
 全直连走各家精品 没什么好说的 夯
 :::
- ![image](https://i.111666.best/image/qRZBcOzBZFOmVuFaiIStMz.webp)
+ ![image](./BackRoute.webp)
 
