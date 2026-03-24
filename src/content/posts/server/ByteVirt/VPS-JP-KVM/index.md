@@ -9,7 +9,7 @@ draft: false             # false=发布, true=草稿（仅本地可见）
 ---
 
 :::tip[观前提示]
-本帖无任何 AFF 链接, 可放心食用, 所有评价皆为个人观点喵
+本帖无任何 AFF 链接, 可放心食用, 所有评价皆为个人观点喵  
 测试机型: [`VPS-2048-KVM-JP`](https://bytevirt.com/store/vps-jp-kvm)
 :::
 
@@ -76,7 +76,7 @@ Full Test       | https://browser.geekbench.com/v5/cpu/23873022
 ## 🎬IP质量
 
 :::note
-IPV4解锁不错
+IPV4全解锁 全被标记为机房
 :::
 
  ![image](https://i.111666.best/image/NeW6grGGHmfvsOyoEEg12R.webp)
