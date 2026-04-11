@@ -47,11 +47,12 @@ Major  Minor  Patch  PreReleaseLabel BuildLabel
 
 ## 软件安装
 
-0. Scoop 默认会将软件安装到 ~\scoop 目录，打开 Powershell 终端，执行如下命令指定 Scoop 将其安装到其他路径（可选）
+#### 0. 指定路径（可选）
+Scoop 默认会将软件安装到 ~\scoop 目录，打开 Powershell 终端，执行如下命令指定 Scoop 将其安装到其他路径
 ```powershell
 $env:SCOOP='这里修改为安装目录'
 ```
-1. 打开 Powershell 终端，执行如下命令：
+#### 1. 打开 Powershell 终端，执行如下命令：
 ```powershell
 # 允许执行远程脚本
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
@@ -59,7 +60,8 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 ```
 
-2. 安装完成后执行`scoop --version`，若能正常显示版本即安装成功
+#### 2. 验证安装
+安装完成后执行`scoop --version`，若能正常显示版本即安装成功
 
 ## 软件配置  
 
@@ -67,12 +69,12 @@ Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 
 Scoop 安装完成后，默认只带 `main` 仓库，所以推荐添加其他的 bucket （即软件桶，可以理解为软件源） 
 
-1. 添加自定义桶需要 git 环境，打开 Powershell 终端，键入如下命令安装 git （若已有 git 环境可跳过这一步）
+#### 1. 添加自定义桶需要 git 环境，打开 Powershell 终端，键入如下命令安装 git （若已有 git 环境可跳过这一步）
 ```powershell
 scoop install git
 ```
 
-2. 添加 `extra`、`nerd-fonts` 桶
+#### 2. 添加 `extra`、`nerd-fonts` 桶
 ```powershell
 scoop bucket add extras
 scoop bucket add nerd-fonts
