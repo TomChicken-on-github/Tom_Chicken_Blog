@@ -65,9 +65,9 @@ export const profileConfig: ProfileConfig = {
 			url: "https://github.com/TomChicken-on-github/",
 		},
 		{
-			name: "Twitter",
-			icon: "fa6-brands:x-twitter",
-			url: "https://x.com/Tom_Chicken114",
+			name: "VRChat",
+			icon: "simple-icons:vrchat",
+			url: "https://vrchat.com/home/user/usr_8116a173-a4ad-4f23-9414-7fc0960e1fcf",
 		},
 		{
 			name: "Telegram",
