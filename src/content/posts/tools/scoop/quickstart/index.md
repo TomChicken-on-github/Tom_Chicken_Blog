@@ -1,5 +1,5 @@
 ---
-title: ✨️Scoop | Windows 最舒适的包管理器
+title: 📦Scoop | Windows 最舒适的包管理器
 published: 2026-04-09    # 发布日期
 description: 仅需一行命令，让 Windows 拥有 Linux 般的纯净 CLI 软件管理体验    # 显示在首页卡片
 #image: ./scoop_logo.webp       # 封面图路径（可选）
@@ -25,7 +25,6 @@ https://scoop.sh/
 -   **纯净绿色**：软件默认统一安装在 `~/scoop` 目录下，不污染注册表，保证软件灵活性和系统环境的干净
 -   **自动处理环境变量**：安装即用，Scoop 自动处理 `PATH`，无需手动配置
 -   **开源社区支持**：Scoop 拥有强大的开源社区支持，用户可以在 Scoop 中设置各种第三方软件源，以此来安装更多的软件
-   
 
 ## 前置条件
 - `PowerShell` 版本  >=  5.1  
