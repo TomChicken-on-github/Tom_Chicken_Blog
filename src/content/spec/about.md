@@ -58,6 +58,10 @@
 
 ---
 
+## 🔗 Friendship Link
+- [LyCecilion's Blog](https://crystal.stellalyr.ink/)
+- [Capscene's Blog](https://capscene.top/)
+
 ## 📜 License
 
 所有文章 / 内容皆使用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) 协议。
