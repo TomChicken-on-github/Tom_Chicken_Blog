@@ -60,7 +60,7 @@ scoop/
 :::tip
 可以先手动安装 `PowerShell` 后在 `PowerShell` 上安装 `scoop`，然后使用 `scoop` 管理 `PowerShell`，[Release下载页](https://github.com/PowerShell/PowerShell/releases/)
 :::  
-::github{repo="PowerShell/PowerShel"}
+::github{repo="PowerShell/PowerShell"}
 
 按下 `Win + R` 键、输入`powershell`并确认以打开 PowerShell，执行如下命令查看当前 PowerShell 版本
 ```powershell
