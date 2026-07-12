@@ -38,7 +38,13 @@ https://ohmyposh.dev/
 <p align="center" style="color: gray; font-size: 14px; margin-top: -10px;">此处使用 powerlevel10k 主题做演示</p>
 
 ## 前置条件
-- 已安装 **Windows Terminal**  （Windows 11 自带，Windows 10 需要在 Microsoft Store 安装）
+- 已安装 **Windows Terminal**  （Windows 11 自带，Windows 10 自行安装）
+::github{repo="microsoft/terminal"}
+推荐使用 `Scoop` 安装 Powershell，[Scoop 使用教程](https://blog.tomchicken.icu/posts/tools/scoop/quickstart/)  
+
+```powershell
+scoop install extras/windows-terminal
+```  
 - 已安装 **PowerShell**
 :::warning
 此处的 `PowerShell` 不是系统自带的 `Windows PowerShell` 的缩写，两者不是同一个东西
@@ -69,7 +75,7 @@ scoop install Maple-Mono-NF-CN
 ## 软件安装
 
 ### 1. 修改 Windows Terminal 字体
-进入 **Windows Terminal** 的设置，将 `外观` -> `字体` 的值修改为 **支持 Nerd-Font** 的字体，如 `Maple Mono NF CN`
+进入 **Windows Terminal** 的设置，将 `配置文件` -> `PowerShell`（也可以修改`默认值`） -> `外观` -> `字体` 的值修改为 **支持 Nerd-Font** 的字体，如 `Maple Mono NF CN`
 ### 2. 安装 Oh My Posh 本体
 推荐使用 `Scoop` 安装 `Oh My Posh`，[Scoop 使用教程](https://blog.tomchicken.icu/posts/tools/scoop/quickstart/)  
 ```powershell
