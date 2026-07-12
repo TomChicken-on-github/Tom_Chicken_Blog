@@ -1,5 +1,5 @@
 ---
-title: 📦Scoop | Windows 最舒适的包管理器
+title: 📦Scoop | Windows 最舒适的软件包管理器
 published: 2026-04-09    # 发布日期
 description: 仅需一行命令，让 Windows 拥有 Linux 般的纯净 CLI 软件管理体验    # 显示在首页卡片
 #image: ./scoop_logo.webp       # 封面图路径（可选）
@@ -52,15 +52,23 @@ scoop/
 
 
 ## 前置条件
-- `PowerShell` 版本  >=  5.1  
+- `PowerShell` 版本  >=  5.1
+:::warning
+强烈建议将 `scoop` 安装在 `PowerShell` 上 **而不是** `Windows PowerShell`  
+并将 `PowerShell` 作为后续终端工作环境 两者**不是**同一个东西 
+:::  
+:::tip
+可以先手动安装 `PowerShell` 后在 `PowerShell` 上安装 `scoop`，然后使用 `scoop` 管理 `PowerShell`，[Release下载页](https://github.com/PowerShell/PowerShell/releases/)
+:::  
+::github{repo="PowerShell/PowerShel"}
 
-按下 `Win + R` 键、输入`powershell`并确认以打开 PowerShell，执行如下命令查看当前 Powershell 版本
+按下 `Win + R` 键、输入`powershell`并确认以打开 PowerShell，执行如下命令查看当前 PowerShell 版本
 ```powershell
 $PSVersionTable.PSVersion
 ```
 你应该会得到形如如下的输出
 ```powershell
-> # $PSVersionTable.PSVersion
+> PSVersionTable.PSVersion
 
 Major  Minor  Patch  PreReleaseLabel BuildLabel
 -----  -----  -----  --------------- ----------
@@ -72,11 +80,11 @@ Major  Minor  Patch  PreReleaseLabel BuildLabel
 ## 软件安装
 
 #### 0. 指定路径（可选）
-Scoop 默认会将软件安装到 ~\scoop 目录，打开 Powershell 终端，执行如下命令指定 Scoop 将其安装到其他路径
+Scoop 默认会将软件安装到 ~\scoop 目录，会占用C盘空间，打开 PowerShell 终端，执行如下命令指定 Scoop 将其安装到其他路径
 ```powershell
 $env:SCOOP='这里修改为安装目录'
 ```
-#### 1. 打开 Powershell 终端，执行如下命令：
+#### 1. 打开 PowerShell 终端，执行如下命令：
 ```powershell
 # 允许执行远程脚本
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
@@ -84,16 +92,28 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 ```
 
+:::tip
+如果以管理员身份运行此命令，可能会遇到以下输出:  
+`Running the installer as administrator is disabled by default`  
+参考 https://github.com/ScoopInstaller/Install#for-admin  
+这是出于安全考虑官方默认禁止了以管理员身份安装，如果你清楚你自己在做什么，需要以管理员身份安装 Scoop，请运行下方的命令
+:::
+
+```powershell
+# 以管理员身份下载并运行 scoop 安装脚本
+iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
+```
+
 #### 2. 验证安装
 安装完成后执行`scoop --version`，若能正常显示版本即安装成功
 
-## 软件配置  
+## 软件配置与优化 
 
 ### 添加桶
 
-Scoop 安装完成后，默认只带 `main` 仓库，所以推荐添加其他的 bucket （即软件桶，可以理解为软件源） 
+Scoop 安装完成后，默认只带 `main` 仓库，由于 `main` 仓库只收录纯命令行的主流工具，所以有必要添加其他的 bucket （即软件桶，可以理解为软件源） 
 
-#### 1. 添加自定义桶需要 git 环境，打开 Powershell 终端，键入如下命令安装 git （若已有 git 环境可跳过这一步）
+#### 1. 添加自定义桶需要 git 环境，打开 PowerShell 终端，键入如下命令安装 git （若已有 git 环境可跳过这一步）
 ```powershell
 scoop install git
 ```
@@ -109,9 +129,15 @@ scoop bucket add nerd-fonts
 
 Scoop 可以使用 `scoop search 软件名` 命令搜索软件，但该命令的效率较低，因此我们需要安装 `scoop-search` 替代 Scoop 自带的搜索
 
-1. 打开 Powershell 终端，键入如下命令安装 `scoop-search`
+1. 打开 PowerShell 终端，键入如下命令安装 `scoop-search`
 ```powershell
 scoop install scoop-search
+```
+
+### 启用 Aria2 加速下载
+Aria2 是一个知名的开源多线程下载器，Scoop 可以利用 Aria2 实现多线程下载，从而加快软件包下载速度，启用它非常非常简单，只需要通过 Scoop 下载安装 Aria2 ，Scoop 会启动使用它下载，~~非常的智能~~
+```powershell
+scoop install aria2
 ```
 
 2. **设置命令别名** （可选）
@@ -120,7 +146,7 @@ scoop-search 的调用命令默认为 `scoop-search.exe <term>`
 每次键入会有些麻烦，所以可以修改配置文件，让 `scoop-search` 接管 `scoop search` 命令
 :::
 
-打开 Powershell 终端，键入如下命令使用记事本编辑 Powershell 终端的配置文件
+打开 PowerShell 终端，键入如下命令使用记事本编辑 PowerShell 终端的配置文件
 ```powershell
 notepad $PROFILE
 ```
@@ -128,7 +154,7 @@ notepad $PROFILE
 ```ps1
 . ([ScriptBlock]::Create((& scoop-search --hook | Out-String)))
 ```
-保存更改，重启 Powershell 终端生效
+保存更改，重启 PowerShell 终端生效
 
 ## 常用命令
 
