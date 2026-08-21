@@ -20,6 +20,7 @@ interface Props {
 		categories: Record<string, boolean>;
 		categoryOrder: string[];
 		pagination: { limit: number; delay: number; maxTotal: number };
+		hideR18?: boolean;
 	};
 }
 
@@ -80,6 +81,7 @@ async function fetchCategory(
 	username: string,
 	subjectType: number,
 	pagination: { limit: number; delay: number; maxTotal: number },
+	hideR18: boolean = false,
 ): Promise<UserSubjectCollection[]> {
 	const { limit, delay, maxTotal } = pagination;
 	let offset = 0;
@@ -91,22 +93,43 @@ async function fetchCategory(
 		const resp = await fetch(url, { headers: { Accept: "application/json" } });
 		if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
 		const data = await resp.json();
-		const batch: UserSubjectCollection[] = data.data || [];
+		const originalBatch: UserSubjectCollection[] = data.data || [];
+		let batch = originalBatch;
+
+		if (hideR18) {
+			batch = batch.filter((item) => {
+				const tags =
+					item.subject?.tags?.map((t: any) => t.name.toLowerCase()) || [];
+				const userTags = item.tags?.map((t: string) => t.toLowerCase()) || [];
+				const allTags = [...tags, ...userTags];
+				return !allTags.some(
+					(t) =>
+						t.includes("18禁") ||
+						t.includes("里番") ||
+						t.includes("r18") ||
+						t.includes("eroge"),
+				);
+			});
+		}
+
 		if (batch.length > 0) {
 			allItems.push(...batch);
-			offset += limit;
-			if (batch.length < limit) break;
-			await new Promise((r) => setTimeout(r, delay));
-		} else {
+		}
+
+		offset += limit;
+
+		if (originalBatch.length < limit) {
 			break;
 		}
+
+		await new Promise((r) => setTimeout(r, delay));
 	}
 	return allItems;
 }
 
 async function loadDynamicData() {
 	if (!fetchConfig) return;
-	const { username, apiUrl, categories, categoryOrder, pagination } =
+	const { username, apiUrl, categories, categoryOrder, pagination, hideR18 } =
 		fetchConfig;
 
 	const enabled: string[] = [];
@@ -136,6 +159,7 @@ async function loadDynamicData() {
 				username,
 				info.subjectType,
 				pagination,
+				hideR18,
 			);
 			newData[catKey] = data;
 			newTabs.push({ id: catKey, name: info.name, count: data.length });
