@@ -2,7 +2,7 @@
 title: 服务器测评 - 🗻Gomami.JPN.Pulse
 published: 2025-12-06    # 发布日期
 description: 🗻Gomami - JPN.Pulse 服务器测评 六边形战士   # 显示在首页卡片
-image: ./logo.svg       # 封面图路径（可选）
+image: /src/content/posts/server/Gomami/Japan-Pulse/logo.svg       # 封面图路径（可选）
 tags: [服务器, VPS, Gomami, 测评]     # 文章标签
 category: 服务器测评       # 文章分类
 draft: false             # false=发布, true=草稿（仅本地可见）
