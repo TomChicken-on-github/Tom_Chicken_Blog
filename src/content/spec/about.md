@@ -1,27 +1,67 @@
-# 关于我 / About Me
+# About
 
-你好！我是 **夏叶** ，一个在数字世界中默默无闻的一片叶子。
+𝒞𝒾𝒶𝓁𝓁ℴ～ (∠・ω< )⌒★~ 欢迎来到我的博客喵！
 
-## 🛠️ 关于本站
+这里会记录我 ~~瞎jb折腾🤓👆~~ 的过程，也有一些 `VPS` 的测评，有概率随机掉落一些日常或者其他东西（？
 
-这个网站使用 **Astro** 框架构建，采用了 [Firefly](https://github.com/CuteLeaf/Firefly) 模板，Firefly 是基于 [Fuwari](https://github.com/saicaca/fuwari) 的二次开发。
+:::tip
+本站所有的 `VPS` 测评贴内的若未特别声明默认无 `AFF` 链接 若有 `AFF` 链接会标明并会同时放出对应的无 `AFF` 链接
 
-**Firefly** 是一款基于 Astro 框架和 Fuwari 模板开发的清新美观且现代化个人博客主题模板，专为技术爱好者和内容创作者设计。该主题融合了现代 Web 技术栈，提供了丰富的功能模块和高度可定制的界面，让您能够轻松打造出专业且美观的个人博客网站。
-
-
-**🖥️在线预览： [Firefly - Demo site](https://firefly.cuteleaf.cn/)**
-
-**📝Firefly使用文档： [https://docs-firefly.cuteleaf.cn](https://docs-firefly.cuteleaf.cn/)**
-
-**⭐Firefly开源地址：[https://github.com/CuteLeaf/Firefly](https://github.com/CuteLeaf/Firefly)** 
-
-**⭐Fuwari开源地址：[https://github.com/saicaca/fuwari](https://github.com/saicaca/fuwari)**
-
-::github{repo="CuteLeaf/Firefly"}
-
-::github{repo="saicaca/fuwari"}
+~~就点一下 `AFF` 吧喵反正你点一下没损失我也不方便提现就算给我买鸡的优惠券了QAQ~~
+:::
 
 ---
 
-*感谢你的来访！希望在这里能找到对你有用的内容！*
+## 👤 About Me
 
+给自己打的 Tag（雾）：
+
+`MJJ` · `乌蒙吃` · `腐竹` · ~~`臭打游戏的`~~
+
+> 想不出来了，反正啥都沾一点（x
+
+---
+
+## 🌐 My Sites & Projects
+
+### Sites
+- [Blog](https://blog.tomchicken.icu/about/)    你就在这里(
+- [服务器探针](https://monitor.tomchicken.icu)
+
+### Projects
+
+- [WSMCS 繁星之望 Minecraft Server](https://www.wsmcs.top) —— 创始人
+
+---
+
+## 🎮 What am I doing now?
+
+:::tip
+该卡片使用 `Lanyard API` 实时读取我的 Discord 动态实现
+:::
+
+<!-- Discord 实时状态卡片 -->
+<discord-status 
+  data-user-id="1109821913498407042" 
+  data-avatar="627069fe38fef6f76b72a7f67f4cf148"
+  data-worker-url="/api/discord-status">
+</discord-status>
+
+---
+
+## 📝 About This Site
+
+本站使用 [🍥Fuwari](https://github.com/saicaca/fuwari) 构建，托管在 [Cloudflare Pages](https://pages.cloudflare.com/)。
+
+::github{repo="saicaca/fuwari"}
+::github{repo="TomChicken-on-github/Tom_Chicken_Blog"}
+
+---
+
+## 🔗 Friendship Link
+- [LyCecilion's Blog](https://crystal.stellalyr.ink/)
+- [Capscene's Blog](https://capscene.top/)
+
+## 📜 License
+
+所有文章 / 内容皆使用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) 协议。

@@ -1,0 +1,16 @@
+---
+import "../styles/discord-status.css";
+
+interface Props {
+	userId?: string;
+	avatarHash?: string;
+}
+
+const { userId = "1109821913498407042", avatarHash } = Astro.props;
+---
+
+<discord-status data-user-id={userId} data-avatar={avatarHash}></discord-status>
+
+<script>
+	import '../utils/discord-status.js';
+</script>
