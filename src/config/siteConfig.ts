@@ -40,17 +40,16 @@ const pages = resolvePageToggles({
 
 export const siteConfig: SiteConfig = {
 	// 站点标题
-	title: "Firefly",
+	title: "Tom_ChickenのBlog",
 
 	// 站点副标题
-	subtitle: "Demo site",
+	subtitle: "時よ止まれ、お前は美しい",
 
 	// 站点 URL
-	site_url: "https://firefly.cuteleaf.cn",
+	site_url: "https://blog.tomchicken.com",
 
 	// 站点描述
-	description:
-		"Firefly 是一款基于 Astro 框架和 Fuwari 模板开发的清新美观且现代化个人博客主题模板，专为技术爱好者和内容创作者设计。该主题融合了现代 Web 技术栈，提供了丰富的功能模块和高度可定制的界面，让您能够轻松打造出专业且美观的个人博客网站。",
+	description: "✨Tom_ChickenのBlog | 時よ止まれ、お前は美しい",
 
 	// 站点关键词
 	keywords: [
@@ -60,7 +59,10 @@ export const siteConfig: SiteConfig = {
 		"ACGN",
 		"博客",
 		"技术博客",
-		"静态博客",
+		"个人博客",
+		"开源分享",
+		"工具分享",
+		"Tom_Chicken",
 	],
 
 	// 主题色
@@ -89,7 +91,7 @@ export const siteConfig: SiteConfig = {
 	favicon: [
 		{
 			// 图标文件路径
-			src: "/favicon/firefly-32.png",
+			src: "/favicon/HOSHINO_320px_pfp.webp",
 			// 可选，指定主题 'light' | 'dark'
 			// theme: "light",
 			// 可选，图标大小
@@ -110,12 +112,12 @@ export const siteConfig: SiteConfig = {
 		// 使用 Astro 图标库时不需要设置 valueDark，图标会自动跟随主题亮暗色切换
 		logo: {
 			type: "image",
-			value: "assets/images/logo/firefly-light.png",
-			valueDark: "assets/images/logo/firefly-dark.png",
-			alt: "🍀",
+			value: "/public/assets/images/HOSHINO_pfp.png",
+			valueDark: "/public/assets/images/HOSHINO_pfp.png",
+			alt: "✨",
 		},
 		// 导航栏标题
-		title: "Firefly",
+		title: "Tom_Chicken",
 		// 全宽导航栏，导航栏是否占满屏幕宽度
 		widthFull: false,
 		// 导航菜单对齐方式，left：左对齐，center：居中
@@ -127,7 +129,7 @@ export const siteConfig: SiteConfig = {
 	},
 
 	// 站点开始日期，用于统计运行天数
-	siteStartDate: "2025-01-01",
+	siteStartDate: "2025-11-01",
 
 	// 站点时区（IANA 时区字符串），用于格式化bangumi、rss里的构建日期时间等等..
 	// 示例："Asia/Shanghai", "UTC", 如果为空，则按照构建服务器的时区进行时区转换
@@ -246,7 +248,7 @@ export const siteConfig: SiteConfig = {
 	// ── 番组计划bangumi配置 ──────────────────────────────────
 	bangumi: {
 		// Bangumi用户ID
-		userId: "1143164",
+		userId: "tom_chicken",
 		// 数据模式：static=构建时获取，dynamic=客户端实时获取
 		// static 模式在构建时获取数据并静态渲染，部署后数据不更新
 		// dynamic 模式在浏览器中实时请求 API，始终显示最新数据
@@ -259,6 +261,8 @@ export const siteConfig: SiteConfig = {
 		// 可选值: "anime" | "book" | "music" | "game" | "real" (暂不支持"real"类型)
 		// 未列出的类型将按默认顺序排在后面
 		categoryOrder: ["anime", "book", "music", "game"],
+		// 是否隐藏里番/18禁内容 (通过标签过滤)
+		hideR18: true,
 		// 控制各分类的启用状态（true/false），未指定的分类默认启用
 		// categories: {
 		// 	game: false, // 禁用游戏分类显示
