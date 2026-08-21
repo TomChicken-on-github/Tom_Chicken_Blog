@@ -51,7 +51,7 @@
 
 ## 📝 About This Site
 
-本站使用 [🍥Firefly](https://github.com/CuteLeaf/Fireflyi) 构建，托管在 [Cloudflare Workers](https://pages.cloudflare.com/)。
+本站使用 [🍥Firefly](https://github.com/CuteLeaf/Firefly) 构建，托管在 [Cloudflare Workers](https://pages.cloudflare.com/)。
 
 ::github{repo="CuteLeaf/Firefly"}
 ::github{repo="TomChicken-on-github/Tom_Chicken_Blog"}
