@@ -59,6 +59,13 @@ export const sponsorConfig: SponsorConfig = {
 
 	// 打赏者列表（可选）
 	sponsors: [
+		{
+			name: "LyCecilion",
+			avatar:
+				"https://avatars.githubusercontent.com/u/141834038?v=4",
+			amount: "¥50",
+			date: "2026-08-22",
+		},
 		/* 示例：已实名打赏者
 		{
 			name: "夏叶",
