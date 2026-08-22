@@ -48,7 +48,7 @@
     "@tailwindcss/typography": "^0.5.20",
     "@types/hast": "^3.0.5",
     "@types/mdast": "^4.0.4",
-    "astro": "7.2.0",
+    "astro": "7.2.3",
     "astro-expressive-code": "^0.44.1",
     "astro-icon": "^1.2.0",
     "ci-info": "^4.4.0",
@@ -90,7 +90,7 @@
   },
   "devDependencies": {
     "@astrojs/ts-plugin": "^1.10.11",
-    "@biomejs/biome": "2.5.7",
+    "@biomejs/biome": "2.5.9",
     "@iconify-json/fa6-brands": "^1.2.6",
     "@iconify-json/lucide": "^1.2.124",
     "@iconify-json/mdi": "^1.2.3",
