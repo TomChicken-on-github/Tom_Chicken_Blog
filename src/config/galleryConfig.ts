@@ -37,12 +37,12 @@ export const galleryConfig: GalleryConfig = {
 		},
 		*/
 		{
-			id: "Blue_Arhive",
-			name: "Blue_Arhive",
+			id: "Blue_Archive_memory_lobby",
+			name: "记忆大厅 | Blue_Archive",
 			description: "与你的日常，便是奇迹",
 			location: "基沃托斯",
-			date: "2026-01-01",
-			tags: ["Blue_Arhive", "碧蓝档案"],
+			date: "2026-08-22",
+			tags: ["Blue_Archive", "碧蓝档案"],
 		},
 	],
 
