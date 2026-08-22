@@ -36,7 +36,7 @@ export const profileConfig: ProfileConfig = {
 		{
 			name: "Discord",
 			icon: "fa6-brands:discord",
-			url: "http://discordapp.com/users/tom_chicken114514",
+			url: "https://discordapp.com/users/tom_chicken114514",
 		},
 		{
 			name: "VRChat",
