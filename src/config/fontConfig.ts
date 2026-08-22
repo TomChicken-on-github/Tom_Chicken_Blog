@@ -28,6 +28,24 @@ import type { FontDefinition, FontSelectionConfig } from "@/types/fontConfig";
 // 本地开发调试的情况下，修改后需要每次重启开发服务器才能生效
 export const fontsList: FontDefinition[] = [
 	{
+		name: "Maple Mono",
+		cssVariable: "--font-maple-mono",
+		provider: "fontsource",
+		weights: ["400", "500", "700"],
+		styles: ["normal", "italic"],
+		subsets: ["latin"],
+		fallbacks: [
+			"ui-monospace",
+			"SFMono-Regular",
+			"Menlo",
+			"Monaco",
+			"Consolas",
+			"Liberation Mono",
+			"Courier New",
+			"monospace",
+		],
+	},
+	{
 		name: "Zen Maru Gothic",
 		cssVariable: "--font-zen-maru-gothic",
 		provider: "fontsource",
@@ -99,8 +117,8 @@ export const fontConfig: FontSelectionConfig = {
 	bannerSubtitleFont: "--font-inter",
 	// 导航栏标题字体
 	navbarTitleFont: "",
-	// 代码块字体（用于代码高亮和等宽字体场景）
-	codeFont: "--font-jetbrains-mono",
+	// 代码块字体（用于代码高亮和等宽字体场景，仅代码块生效）
+	codeFont: "--font-maple-mono",
 
 	// 本地字体子集化配置（构建时由 scripts/subset-fonts.ts 处理）
 	// key 为 fonts 数组中对应的 cssVariable，value 为子集化选项
