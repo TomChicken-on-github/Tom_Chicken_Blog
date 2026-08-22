@@ -22,28 +22,26 @@ export const profileConfig: ProfileConfig = {
 	// showName: true 时显示图标和名称，false 时只显示图标
 	links: [
 		{
-			name: "qq",
-			icon: "fa7-brands:qq",
-			url: "https://qm.qq.com/q/ZGsFa8qX2G",
-			showName: false,
-		},
-		{
 			name: "GitHub",
-			icon: "fa7-brands:github",
-			url: "https://github.com/CuteLeaf",
-			showName: false,
+			icon: "fa6-brands:github", // Visit https://icones.js.org/ for icon codes
+			// You will need to install the corresponding icon set if it's not already included
+			// `pnpm add @iconify-json/<icon-set-name>`
+			url: "https://github.com/TomChicken-on-github/",
 		},
 		{
-			name: "Email",
-			icon: "fa7-solid:envelope",
-			url: "mailto:xiaye@msn.com",
-			showName: false,
+			name: "Steam",
+			icon: "fa6-brands:steam",
+			url: "https://steamcommunity.com/id/Tom_Chicken/",
 		},
 		{
-			name: "RSS",
-			icon: "fa7-solid:rss",
-			url: "/rss/",
-			showName: false,
+			name: "Discord",
+			icon: "fa6-brands:discord",
+			url: "http://discordapp.com/users/tom_chicken114514",
+		},
+		{
+			name: "VRChat",
+			icon: "simple-icons:vrchat",
+			url: "https://vrchat.com/home/user/usr_8116a173-a4ad-4f23-9414-7fc0960e1fcf",
 		},
 	],
 };
