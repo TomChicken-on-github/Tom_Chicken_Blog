@@ -4,7 +4,7 @@
 
 我是 Tom_Chicken，一个很普通的腐竹  
 喜欢 `ACGN`、`J-pop`、`游戏`  
-[ずっと真夜中でいいのに](https://zutomayo.net/) **赛高！！！**
+[ずっと真夜中でいいのに](https://mzh.moegirl.org.cn/%E6%B0%B8%E8%BF%9C%E6%98%AF%E6%B7%B1%E5%A4%9C%E6%9C%89%E5%A4%9A%E5%A5%BD) **赛高！！！**
 
 
 这里会有我 ~~瞎jb折腾🤓👆~~ 的记录，也有一些 `VPS` 的测评，有概率随机掉落一些日常或者其他东西（？  
