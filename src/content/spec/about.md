@@ -46,9 +46,6 @@
 
 ---
 
-## 🔗 Friendship Link
-- [LyCecilion's Blog](https://crystal.stellalyr.ink/)
-- [Capscene's Blog](https://capscene.top/)
 
 ## 📜 License
 
