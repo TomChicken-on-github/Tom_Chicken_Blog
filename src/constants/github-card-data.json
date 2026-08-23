@@ -5,10 +5,40 @@
 		"avatarUrl": "https://avatars.githubusercontent.com/u/43440669?v=4",
 		"license": "MIT"
 	},
+	"jandedobbeleer/oh-my-posh": {
+		"description": "The most customisable and low-latency cross platform/shell prompt renderer",
+		"language": "Go",
+		"avatarUrl": "https://avatars.githubusercontent.com/u/2492783?v=4",
+		"license": "MIT"
+	},
+	"microsoft/terminal": {
+		"description": "The new Windows Terminal and the original Windows console host, all in the same place!",
+		"language": "C++",
+		"avatarUrl": "https://avatars.githubusercontent.com/u/6154722?v=4",
+		"license": "MIT"
+	},
+	"powershell/powershell": {
+		"description": "PowerShell for every system!",
+		"language": "C#",
+		"avatarUrl": "https://avatars.githubusercontent.com/u/11524380?v=4",
+		"license": "MIT"
+	},
 	"saicaca/fuwari": {
 		"description": "✨A static blog template built with Astro. ",
 		"language": "Astro",
 		"avatarUrl": "https://avatars.githubusercontent.com/u/25200299?v=4",
 		"license": "MIT"
+	},
+	"scoopinstaller/scoop": {
+		"description": "A command-line installer for Windows.",
+		"language": "PowerShell",
+		"avatarUrl": "https://avatars.githubusercontent.com/u/16618068?v=4",
+		"license": "NOASSERTION"
+	},
+	"subframe7536/maple-font": {
+		"description": "Maple Mono: Open source monospace font with round corner, ligatures and Nerd-Font icons for IDE and terminal, fine-grained customization options. 带连字和控制台图标的圆角等宽字体，中英文宽度完美2:1，细粒度的自定义选项",
+		"language": "Python",
+		"avatarUrl": "https://avatars.githubusercontent.com/u/78338239?v=4",
+		"license": "OFL-1.1"
 	}
 }
