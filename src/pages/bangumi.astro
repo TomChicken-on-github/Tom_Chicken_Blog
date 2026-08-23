@@ -28,7 +28,6 @@ const bangumiConfig = {
 	apiUrl: siteConfig.bangumi?.apiUrl || "https://api.bangumi.one",
 	subjectBaseUrl:
 		siteConfig.bangumi?.subjectBaseUrl || "https://bangumi.one/subject/",
-	hideR18: siteConfig.bangumi?.hideR18 ?? false,
 	// 从配置文件中读取各分类是否启用，若未配置则使用默认值
 	categories: {
 		book: siteConfig.bangumi?.categories?.book ?? true,
@@ -111,37 +110,18 @@ async function fetchBangumiData(username: string, subjectType: number) {
 		}
 
 		const data = (await response.json()) as UserSubjectCollectionResponse;
-		const originalBatch = data.data || [];
-		let currentBatch = originalBatch;
-
-		if (bangumiConfig.hideR18) {
-			currentBatch = currentBatch.filter((item) => {
-				const tags =
-					item.subject?.tags?.map((t: any) => t.name.toLowerCase()) || [];
-				const userTags = item.tags?.map((t: string) => t.toLowerCase()) || [];
-				const allTags = [...tags, ...userTags];
-				return !allTags.some(
-					(t) =>
-						t.includes("18禁") ||
-						t.includes("里番") ||
-						t.includes("r18") ||
-						t.includes("eroge"),
-				);
-			});
-		}
+		const currentBatch = data.data || [];
 
 		if (currentBatch.length > 0) {
 			allData = allData.concat(currentBatch);
-		}
+			offset += limit;
 
-		offset += limit;
-
-		// 如果本次获取的数据少于limit，说明已经是最后一页
-		if (originalBatch.length < limit) {
+			// 如果本次获取的数据少于limit，说明已经是最后一页
+			if (currentBatch.length < limit) {
+				hasMore = false;
+			}
+		} else {
 			hasMore = false;
-		} else if (currentBatch.length === 0 && originalBatch.length > 0) {
-			// 所有都被过滤了，继续获取下一页
-			hasMore = true;
 		}
 
 		// 添加延迟避免请求过于频繁
@@ -275,7 +255,6 @@ const activeTab = tabs[0]?.id || "anime";
                 categories: bangumiConfig.categories,
                 categoryOrder: siteConfig.bangumi?.categoryOrder || [],
                 pagination: bangumiConfig.pagination,
-                hideR18: bangumiConfig.hideR18,
               }}
             />
           )}
