@@ -24,8 +24,7 @@ export const friendsPageConfig: FriendsPageConfig = {
 export const friendsConfig: FriendLink[] = [
 	{
 		title: "LyCecilion's Blog",
-		imgurl:
-			"https://crystal.stellalyr.ink/favicon.ico",
+		imgurl: "https://crystal.stellalyr.ink/favicon.ico",
 		desc: "追风赶月莫停留，平芜尽处是青山",
 		siteurl: "https://crystal.stellalyr.ink/",
 		tags: ["Blog"],

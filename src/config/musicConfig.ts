@@ -61,21 +61,24 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				name: "Saturn",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/Tadashii Itsuwarikarano Kishou - EP - 2018/03. Saturn.m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/Tadashii Itsuwarikarano Kishou - EP - 2018/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/Tadashii Itsuwarikarano Kishou - EP - 2018/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/Tadashii Itsuwarikarano Kishou - EP - 2018/03. Saturn.lrc",
 			},
 			{
 				name: "Uni To Kuri",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/Tadashii Itsuwarikarano Kishou - EP - 2018/04. Uni To Kuri.m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/Tadashii Itsuwarikarano Kishou - EP - 2018/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/Tadashii Itsuwarikarano Kishou - EP - 2018/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/Tadashii Itsuwarikarano Kishou - EP - 2018/04. Uni To Kuri.lrc",
 			},
 			{
 				name: "Kimigaite Mizuninaru",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/Tadashii Itsuwarikarano Kishou - EP - 2018/06. Kimigaite Mizuninaru.m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/Tadashii Itsuwarikarano Kishou - EP - 2018/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/Tadashii Itsuwarikarano Kishou - EP - 2018/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/Tadashii Itsuwarikarano Kishou - EP - 2018/06. Kimigaite Mizuninaru.lrc",
 			},
 			{
@@ -131,28 +134,32 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				name: "Kan Saete Kuyashiiwa",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/Imawa Imade Chikaiwa Emide - EP - 2019/01. Kan Saete Kuyashiiwa.m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/Imawa Imade Chikaiwa Emide - EP - 2019/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/Imawa Imade Chikaiwa Emide - EP - 2019/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/Imawa Imade Chikaiwa Emide - EP - 2019/01. Kan Saete Kuyashiiwa.lrc",
 			},
 			{
 				name: "Matane Maboroshi",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/Imawa Imade Chikaiwa Emide - EP - 2019/03. Matane Maboroshi.m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/Imawa Imade Chikaiwa Emide - EP - 2019/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/Imawa Imade Chikaiwa Emide - EP - 2019/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/Imawa Imade Chikaiwa Emide - EP - 2019/03. Matane Maboroshi.lrc",
 			},
 			{
 				name: "Minority Myakuraku",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/Imawa Imade Chikaiwa Emide - EP - 2019/04. Minority Myakuraku.m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/Imawa Imade Chikaiwa Emide - EP - 2019/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/Imawa Imade Chikaiwa Emide - EP - 2019/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/Imawa Imade Chikaiwa Emide - EP - 2019/04. Minority Myakuraku.lrc",
 			},
 			{
 				name: "Samayoi Yoi Ondo",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/Imawa Imade Chikaiwa Emide - EP - 2019/05. Samayoi Yoi Ondo.m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/Imawa Imade Chikaiwa Emide - EP - 2019/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/Imawa Imade Chikaiwa Emide - EP - 2019/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/Imawa Imade Chikaiwa Emide - EP - 2019/05. Samayoi Yoi Ondo.lrc",
 			},
 			{
@@ -201,14 +208,16 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				name: "JK Bomber",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/Hogarakana Hifutote Fufuku - EP - 2020/04. JK Bomber.m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/Hogarakana Hifutote Fufuku - EP - 2020/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/Hogarakana Hifutote Fufuku - EP - 2020/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/Hogarakana Hifutote Fufuku - EP - 2020/04. JK Bomber.lrc",
 			},
 			{
 				name: "Marine Blue Garden",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/Hogarakana Hifutote Fufuku - EP - 2020/05. Marine Blue Garden.m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/Hogarakana Hifutote Fufuku - EP - 2020/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/Hogarakana Hifutote Fufuku - EP - 2020/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/Hogarakana Hifutote Fufuku - EP - 2020/05. Marine Blue Garden.lrc",
 			},
 			{
@@ -229,7 +238,8 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				name: "Byoushinwo Kamu (From The First Take)",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/01. Byoushinwo Kamu (From The First Take).m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/01. Byoushinwo Kamu (From The First Take).png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/01. Byoushinwo Kamu (From The First Take).png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/01. Byoushinwo Kamu (From The First Take).lrc",
 			},
 			{
@@ -271,21 +281,24 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				name: "Inside Joke",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/Nobi Shigusa Korite Itomagoi - EP - 2021/03. Inside Joke.m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/Nobi Shigusa Korite Itomagoi - EP - 2021/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/Nobi Shigusa Korite Itomagoi - EP - 2021/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/Nobi Shigusa Korite Itomagoi - EP - 2021/03. Inside Joke.lrc",
 			},
 			{
 				name: "Neko Reset",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/Nobi Shigusa Korite Itomagoi - EP - 2021/04. Neko Reset.m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/Nobi Shigusa Korite Itomagoi - EP - 2021/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/Nobi Shigusa Korite Itomagoi - EP - 2021/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/Nobi Shigusa Korite Itomagoi - EP - 2021/04. Neko Reset.lrc",
 			},
 			{
 				name: "Stay Foolish",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/Nobi Shigusa Korite Itomagoi - EP - 2021/06. Stay Foolish.m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/Nobi Shigusa Korite Itomagoi - EP - 2021/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/Nobi Shigusa Korite Itomagoi - EP - 2021/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/Nobi Shigusa Korite Itomagoi - EP - 2021/06. Stay Foolish.lrc",
 			},
 			{
@@ -306,7 +319,8 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				name: "Kira Killer (feat. Mori Calliope)",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/01. Kira Killer (feat. Mori Calliope).m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/01. Kira Killer (feat. Mori Calliope).png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/01. Kira Killer (feat. Mori Calliope).png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/01. Kira Killer (feat. Mori Calliope).lrc",
 			},
 			{
@@ -320,21 +334,24 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				name: "Flow Different",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/Nobi Shigusa Korite Itomagoi - EP - 2022/01. Flow Different.m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/Nobi Shigusa Korite Itomagoi - EP - 2022/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/Nobi Shigusa Korite Itomagoi - EP - 2022/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/Nobi Shigusa Korite Itomagoi - EP - 2022/01. Flow Different.lrc",
 			},
 			{
 				name: "QUILT",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/Nobi Shigusa Korite Itomagoi - EP - 2022/02. QUILT.m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/Nobi Shigusa Korite Itomagoi - EP - 2022/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/Nobi Shigusa Korite Itomagoi - EP - 2022/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/Nobi Shigusa Korite Itomagoi - EP - 2022/02. QUILT.lrc",
 			},
 			{
 				name: "Kisumi at Midnight",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/Nobi Shigusa Korite Itomagoi - EP - 2022/05. Kisumi at Midnight.m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/Nobi Shigusa Korite Itomagoi - EP - 2022/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/Nobi Shigusa Korite Itomagoi - EP - 2022/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/Nobi Shigusa Korite Itomagoi - EP - 2022/05. Kisumi at Midnight.lrc",
 			},
 			{
@@ -355,7 +372,8 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				name: "Kisumi at Midnight",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/ZUTOMAYO - 2024 中国特别版 - 2022/12. Kisumi at Midnight.m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/ZUTOMAYO - 2024 中国特别版 - 2022/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/ZUTOMAYO - 2024 中国特别版 - 2022/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/ZUTOMAYO - 2024 中国特别版 - 2022/12. Kisumi at Midnight.lrc",
 			},
 			{
@@ -390,98 +408,112 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				name: "Open HonkakuCyuukaHazimemashita (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE)",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/01. Open HonkakuCyuukaHazimemashita (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE).m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/01. Open HonkakuCyuukaHazimemashita (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE).lrc",
 			},
 			{
 				name: "QUILT (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE)",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/02. QUILT (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE).m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/02. QUILT (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE).lrc",
 			},
 			{
 				name: "Konnakoto Soudou (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE)",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/03. Konnakoto Soudou (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE).m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/03. Konnakoto Soudou (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE).lrc",
 			},
 			{
 				name: "Blush (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE)",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/05. Blush (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE).m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/05. Blush (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE).lrc",
 			},
 			{
 				name: "Hanaichi Monnme (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE)",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/06. Hanaichi Monnme (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE).m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/06. Hanaichi Monnme (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE).lrc",
 			},
 			{
 				name: "Flow Different (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE)",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/08. Flow Different (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE).m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/08. Flow Different (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE).lrc",
 			},
 			{
 				name: "Blues in the Closet (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE)",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/10. Blues in the Closet (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE).m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/10. Blues in the Closet (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE).lrc",
 			},
 			{
 				name: "Haze Haseru Haterumade(AragaiHazefriedTeisyoku) [AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE]",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/11. Haze Haseru Haterumade(AragaiHazefriedTeisyoku) [AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE].m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/11. Haze Haseru Haterumade(AragaiHazefriedTeisyoku) [AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE].lrc",
 			},
 			{
 				name: "80kounenno Tabi (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE)",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/12. 80kounenno Tabi (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE).m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/12. 80kounenno Tabi (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE).lrc",
 			},
 			{
 				name: "NEO Chao Fan (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE)",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/15. NEO Chao Fan (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE).m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/15. NEO Chao Fan (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE).lrc",
 			},
 			{
 				name: "Engine Oil (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE)",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/16. Engine Oil (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE).m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/16. Engine Oil (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE).lrc",
 			},
 			{
 				name: "Minority Myakuraku (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE)",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/20. Minority Myakuraku (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE).m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/20. Minority Myakuraku (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE).lrc",
 			},
 			{
 				name: "Time Left (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE)",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/22. Time Left (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE).m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/22. Time Left (AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE).lrc",
 			},
 			{
 				name: "Darken(Strong) [AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE]",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/28. Darken(Strong) [AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE].m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- - 2024/28. Darken(Strong) [AUTHENTIC CHINESE KISSA _Ai no Pegasus_ -SPICY DRAGON OF LOVE- 2024 _ LIVE].lrc",
 			},
 			{
@@ -509,14 +541,16 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				name: "KOKE",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/Koke no ichinen Kaiba ni takusu - EP - 2024/01. KOKE.m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/Koke no ichinen Kaiba ni takusu - EP - 2024/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/Koke no ichinen Kaiba ni takusu - EP - 2024/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/Koke no ichinen Kaiba ni takusu - EP - 2024/01. KOKE.lrc",
 			},
 			{
 				name: "KUZURI",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/Koke no ichinen Kaiba ni takusu - EP - 2024/03. KUZURI.m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/Koke no ichinen Kaiba ni takusu - EP - 2024/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/Koke no ichinen Kaiba ni takusu - EP - 2024/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/Koke no ichinen Kaiba ni takusu - EP - 2024/03. KUZURI.lrc",
 			},
 			{
@@ -537,63 +571,72 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				name: "Opening Ceremony, Please Stand (Live)",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/02. Opening Ceremony, Please Stand (Live).m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/02. Opening Ceremony, Please Stand (Live).lrc",
 			},
 			{
 				name: "Byoushinwo Kamu (Live)",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/04. Byoushinwo Kamu (Live).m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/04. Byoushinwo Kamu (Live).lrc",
 			},
 			{
 				name: "Time Left (Live)",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/09. Time Left (Live).m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/09. Time Left (Live).lrc",
 			},
 			{
 				name: "Pain Give Form (Live)",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/10. Pain Give Form (Live).m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/10. Pain Give Form (Live).lrc",
 			},
 			{
 				name: "Warmthaholic (Live)",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/14. Warmthaholic (Live).m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/14. Warmthaholic (Live).lrc",
 			},
 			{
 				name: "TAIDADA (Live)",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/20. TAIDADA (Live).m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/20. TAIDADA (Live).lrc",
 			},
 			{
 				name: "Darken (Live)",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/21. Darken (Live).m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/21. Darken (Live).lrc",
 			},
 			{
 				name: "Inside Joke (Live)",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/23. Inside Joke (Live).m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/23. Inside Joke (Live).lrc",
 			},
 			{
 				name: "Toboshii DNA Dake (Live)",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/24. Toboshii DNA Dake (Live).m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/MIDNIGHT FOREVER EXPO ‘MEIKŌ WA GUNARUGA GOTOSHI’ (Live) - 2025/24. Toboshii DNA Dake (Live).lrc",
 			},
 			{
@@ -628,7 +671,8 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				name: "Pain Give Form",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/ZUTOMAYO - 2026  Special Edition - 2025/04. Pain Give Form.m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/ZUTOMAYO - 2026  Special Edition - 2025/Cover.png",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/ZUTOMAYO - 2026  Special Edition - 2025/Cover.png",
 				lrc: "/assets/music/lrc/ZUTOMAYO/ZUTOMAYO - 2026  Special Edition - 2025/04. Pain Give Form.lrc",
 			},
 			{

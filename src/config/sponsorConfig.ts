@@ -8,8 +8,7 @@ export const sponsorConfig: SponsorConfig = {
 	description: "你的支持是我持续创作的动力喵~",
 
 	// 打赏用途说明
-	usage:
-		"您的打赏将帮助我支持服务器开支、产出更多优质内容，感谢投喂喵",
+	usage: "您的打赏将帮助我支持服务器开支、产出更多优质内容，感谢投喂喵",
 
 	// 是否显示打赏者列表
 	showSponsorsList: true,
@@ -61,8 +60,7 @@ export const sponsorConfig: SponsorConfig = {
 	sponsors: [
 		{
 			name: "LyCecilion",
-			avatar:
-				"https://avatars.githubusercontent.com/u/141834038?v=4",
+			avatar: "https://avatars.githubusercontent.com/u/141834038?v=4",
 			amount: "¥50",
 			date: "2026-08-22",
 		},
