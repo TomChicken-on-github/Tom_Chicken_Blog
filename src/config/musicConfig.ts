@@ -9,7 +9,7 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 	showInSidebar: true,
 
 	// 使用方式："meting" 使用 Meting API，"local" 使用本地音乐列表
-	mode: "meting",
+	mode: "local",
 
 	// 默认音量 (0-1)
 	volume: 0.7,
@@ -22,18 +22,11 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 
 	// Meting API 配置
 	meting: {
-		// Meting API 地址
-		// 默认使用官方 API，也可以使用自定义 API
 		api: "https://api.i-meto.com/meting/api?server=:server&type=:type&id=:id&r=:r",
-		// 音乐平台：netease=网易云音乐, tencent=QQ音乐, kugou=酷狗音乐, xiami=虾米音乐, baidu=百度音乐
 		server: "netease",
-		// 类型：song=单曲, playlist=歌单, album=专辑, search=搜索, artist=艺术家
 		type: "artist",
-		// 歌单/专辑/单曲 ID 或搜索关键词
 		id: "15021101",
-		// 认证 token（可选）
 		auth: "",
-		// 备用 API 配置（当主 API 失败时使用）
 		fallbackApis: [
 			"https://api.injahow.cn/meting/?server=:server&type=:type&id=:id",
 			"https://api.moeyao.cn/meting/?server=:server&type=:type&id=:id",
@@ -41,18 +34,77 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 	},
 
 	// 本地音乐配置（当 mode 为 'local' 时使用）
-	// 1. 支持传入歌词文件的路径
-	// lrc: "/assets/music/lrc/使一颗心免于哀伤-哼唱.lrc",
-	// 2. 或者直接填入歌词字符串内容
-	// lrc: "[00:00.00]歌词内容...",
 	local: {
 		playlist: [
 			{
-				name: "使一颗心免于哀伤",
-				artist: "知更鸟 / HOYO-MiX / Chevy",
-				url: "/assets/music/使一颗心免于哀伤-哼唱.mp3",
-				cover: "/assets/music/cover/109951169585655912.webp",
-				lrc: "",
+				name: "Byoushinwo Kamu",
+				artist: "ずっと真夜中でいいのに。",
+				url: "/assets/music/song/ZUTOMAYO/01. Byoushinwo Kamu.m4a",
+				cover: "/assets/music/cover/ZUTOMAYO/01. Byoushinwo Kamu.png",
+				lrc: "/assets/music/lrc/ZUTOMAYO/01. Byoushinwo Kamu.lrc",
+			},
+			{
+				name: "Humanoid",
+				artist: "ずっと真夜中でいいのに。",
+				url: "/assets/music/song/ZUTOMAYO/Hisohiso Banashi - 2018/09. Humanoid.m4a",
+				cover: "/assets/music/cover/ZUTOMAYO/Hisohiso Banashi - 2018/Cover.png",
+				lrc: "/assets/music/lrc/ZUTOMAYO/Hisohiso Banashi - 2018/09. Humanoid.lrc",
+			},
+			{
+				name: "Nouriueno Cracker",
+				artist: "ずっと真夜中でいいのに。",
+				url: "/assets/music/song/ZUTOMAYO/01. Nouriueno Cracker.m4a",
+				cover: "/assets/music/cover/ZUTOMAYO/01. Nouriueno Cracker.png",
+				lrc: "/assets/music/lrc/ZUTOMAYO/01. Nouriueno Cracker.lrc",
+			},
+			{
+				name: "Saturn",
+				artist: "ずっと真夜中でいいのに。",
+				url: "/assets/music/song/ZUTOMAYO/Tadashii Itsuwarikarano Kishou - EP - 2018/03. Saturn.m4a",
+				cover: "/assets/music/cover/ZUTOMAYO/Tadashii Itsuwarikarano Kishou - EP - 2018/Cover.png",
+				lrc: "/assets/music/lrc/ZUTOMAYO/Tadashii Itsuwarikarano Kishou - EP - 2018/03. Saturn.lrc",
+			},
+			{
+				name: "Uni To Kuri",
+				artist: "ずっと真夜中でいいのに。",
+				url: "/assets/music/song/ZUTOMAYO/Tadashii Itsuwarikarano Kishou - EP - 2018/04. Uni To Kuri.m4a",
+				cover: "/assets/music/cover/ZUTOMAYO/Tadashii Itsuwarikarano Kishou - EP - 2018/Cover.png",
+				lrc: "/assets/music/lrc/ZUTOMAYO/Tadashii Itsuwarikarano Kishou - EP - 2018/04. Uni To Kuri.lrc",
+			},
+			{
+				name: "Kimigaite Mizuninaru",
+				artist: "ずっと真夜中でいいのに。",
+				url: "/assets/music/song/ZUTOMAYO/Tadashii Itsuwarikarano Kishou - EP - 2018/06. Kimigaite Mizuninaru.m4a",
+				cover: "/assets/music/cover/ZUTOMAYO/Tadashii Itsuwarikarano Kishou - EP - 2018/Cover.png",
+				lrc: "/assets/music/lrc/ZUTOMAYO/Tadashii Itsuwarikarano Kishou - EP - 2018/06. Kimigaite Mizuninaru.lrc",
+			},
+			{
+				name: "Inemuri Enseitai",
+				artist: "ずっと真夜中でいいのに。",
+				url: "/assets/music/song/ZUTOMAYO/Hisohiso Banashi - 2019/03. Inemuri Enseitai.m4a",
+				cover: "/assets/music/cover/ZUTOMAYO/Hisohiso Banashi - 2019/Cover.png",
+				lrc: "/assets/music/lrc/ZUTOMAYO/Hisohiso Banashi - 2019/03. Inemuri Enseitai.lrc",
+			},
+			{
+				name: "Haze Haseru Haterumade",
+				artist: "ずっと真夜中でいいのに。",
+				url: "/assets/music/song/ZUTOMAYO/Hisohiso Banashi - 2019/04. Haze Haseru Haterumade.m4a",
+				cover: "/assets/music/cover/ZUTOMAYO/Hisohiso Banashi - 2019/Cover.png",
+				lrc: "/assets/music/lrc/ZUTOMAYO/Hisohiso Banashi - 2019/04. Haze Haseru Haterumade.lrc",
+			},
+			{
+				name: "Kettobashita Moufu",
+				artist: "ずっと真夜中でいいのに。",
+				url: "/assets/music/song/ZUTOMAYO/Hisohiso Banashi - 2019/05. Kettobashita Moufu.m4a",
+				cover: "/assets/music/cover/ZUTOMAYO/Hisohiso Banashi - 2019/Cover.png",
+				lrc: "/assets/music/lrc/ZUTOMAYO/Hisohiso Banashi - 2019/05. Kettobashita Moufu.lrc",
+			},
+			{
+				name: "Dear. Mr_F_",
+				artist: "ずっと真夜中でいいのに。",
+				url: "/assets/music/song/ZUTOMAYO/Hisohiso Banashi - 2019/06. Dear. Mr_F_.m4a",
+				cover: "/assets/music/cover/ZUTOMAYO/Hisohiso Banashi - 2019/Cover.png",
+				lrc: "/assets/music/lrc/ZUTOMAYO/Hisohiso Banashi - 2019/06. Dear. Mr_F_.lrc",
 			},
 		],
 	},

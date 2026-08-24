@@ -32,3 +32,29 @@ Use Conventional Commits, matching the current history: `feat: ...`, `fix: ...`,
 ## Security & Configuration Tips
 
 Do not commit secrets, tokens, or service keys in config files. Keep deployment-specific settings in the target platform environment, and review generated files such as `dist`, `src/constants/lqips.json`, and `src/constants/icons.ts` before committing them.
+
+## Firefly Asset & Path Mapping Guidelines
+
+- Path resolution for static files: `/assets/...` (with leading slash) maps to `public/assets/...` in the project filesystem (the `public/` folder maps directly to the web root `/`).
+- Path resolution for source files: `assets/...` (without leading slash in imports/source) maps to `src/assets/...`.
+
+## Music Asset Structure & Configuration Guidelines
+
+- Physical directory layout: Organize all music assets under `public/assets/music/` into three parallel subdirectories:
+  - `public/assets/music/song/`: Audio files (`.m4a`, `.mp3`, `.flac`, etc.)
+  - `public/assets/music/cover/`: Album/track cover images (`.png`, `.webp`, `.jpg`)
+  - `public/assets/music/lrc/`: Synchronized lyric files (`.lrc`)
+- Organization by artist: Inside each of `song/`, `cover/`, and `lrc/`, create an artist folder named `{ArtistName}` (e.g. `ZUTOMAYO/`).
+- Album/EP structure: For albums or EPs, organize inside `{ArtistName}` using subfolders named strictly as `{AlbumName} - {year}` (hyphen-separated, not `{AlbumName}/{year}`).
+- Single structure: For singles, place files directly inside `{ArtistName}/` without creating subfolders.
+- Music player config: Register imported tracks in `src/config/musicConfig.ts` under `local: { playlist: [...] }` with items structured as:
+  ```ts
+  {
+    name: "歌曲名称",
+    artist: "艺术家",
+    url: "/assets/music/song/...",
+    cover: "/assets/music/cover/...",
+    lrc: "/assets/music/lrc/...",
+  }
+  ```
+
