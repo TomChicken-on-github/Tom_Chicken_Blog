@@ -1,4 +1,4 @@
-/* Discord Status Card Styles - 性能优化版本 */
+/* Discord Status Card Styles - 性能与样式优化版本 */
 
 /* 容器 */
 discord-status {
@@ -10,7 +10,7 @@ discord-status {
   contain-intrinsic-size: 0 200px;
 }
 
-/* 外层大卡片 - 使用 contain 优化渲染 */
+/* 外层大卡片 - 避免 contain: paint 导致投影被截断 */
 .discord-card {
   background: var(--card-bg, #ffffff);
   border: 1px solid var(--card-border, #e5e7eb);
@@ -20,7 +20,7 @@ discord-status {
   font-family: system-ui, -apple-system, sans-serif;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
-  contain: layout style paint;
+  contain: layout style;
   will-change: transform;
 }
 
@@ -42,6 +42,7 @@ discord-status {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  min-width: 0;
 }
 
 /* 右侧：活动区域 - 自适应 */
@@ -136,6 +137,38 @@ discord-status {
   margin-bottom: 0.5rem;
 }
 
+/* 自定义状态 */
+.discord-custom-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  max-width: 100%;
+  font-size: 0.75rem;
+  color: var(--text-primary, #374151);
+  padding: 0.25rem 0.5rem;
+  background: var(--activity-bg, #f3f4f6);
+  border: 1px solid var(--activity-border, #e5e7eb);
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  box-sizing: border-box;
+}
+
+.custom-status-emoji {
+  width: 1.1rem;
+  height: 1.1rem;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.custom-status-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .discord-divider {
   width: 100%;
   height: 1px;
@@ -160,6 +193,7 @@ discord-status {
   border-radius: 0.75rem;
   transition: background-color 0.2s ease;
   contain: layout;
+  min-width: 0;
 }
 
 .activity-item:hover {
@@ -190,7 +224,7 @@ discord-status {
 .activity-content {
   flex: 1;
   min-width: 0;
-  contain: layout;
+  overflow: hidden;
 }
 
 .activity-name {
@@ -199,6 +233,9 @@ discord-status {
   color: var(--text-primary, #111827);
   margin: 0;
   text-rendering: optimizeLegibility;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .activity-details,
@@ -206,6 +243,9 @@ discord-status {
   font-size: 0.75rem;
   color: var(--text-secondary, #6b7280);
   margin-top: 0.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* 音乐进度条 - GPU 加速 */

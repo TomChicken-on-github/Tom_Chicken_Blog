@@ -263,7 +263,10 @@ class DiscordStatus extends HTMLElement {
 				console.log(
 					`[DiscordStatus] Retrying API in ${Math.round(delay)}ms...`,
 				);
-				this.apiRetryTimer = setTimeout(() => this.fetchInitialData(retryAttempt + 1), delay);
+				this.apiRetryTimer = setTimeout(
+					() => this.fetchInitialData(retryAttempt + 1),
+					delay,
+				);
 			} else if (!this._hasError) {
 				this._hasError = true;
 				this._showError();
@@ -366,7 +369,7 @@ class DiscordStatus extends HTMLElement {
 
 			case 0: // Event
 				if (t === "INIT_STATE" || t === "PRESENCE_UPDATE") {
-					const userData = (d && d[this.userId]) ? d[this.userId] : d;
+					const userData = d?.[this.userId] ?? d;
 					if (userData) {
 						this.render(userData);
 					}
@@ -461,7 +464,9 @@ class DiscordStatus extends HTMLElement {
 			// 离线时从 Worker 获取历史记录，若 Worker 失败则降级到 localStorage
 			if (!this._historyFetched) {
 				const remoteHistory = await this._fetchHistoryFromWorker();
-				this._historyData = remoteHistory?.act ? remoteHistory : this._loadLastActivity();
+				this._historyData = remoteHistory?.act
+					? remoteHistory
+					: this._loadLastActivity();
 				this._historyFetched = true;
 			}
 			historyData = this._historyData;
@@ -478,7 +483,9 @@ class DiscordStatus extends HTMLElement {
 
 		// 检查活动是否变化
 		const currentKey = activities
-			.map((a) => `${a.name}-${a.details}-${a.state}-${a.timestamps?.start || ""}`)
+			.map(
+				(a) => `${a.name}-${a.details}-${a.state}-${a.timestamps?.start || ""}`,
+			)
 			.join("|");
 		if (this._lastActivityKey !== currentKey) {
 			this._lastActivityKey = currentKey;
@@ -537,7 +544,12 @@ class DiscordStatus extends HTMLElement {
 
 		// 右侧活动
 		inner.appendChild(
-			this._createActivitiesSection(activities, isHistory, historyTimestamp, data),
+			this._createActivitiesSection(
+				activities,
+				isHistory,
+				historyTimestamp,
+				data,
+			),
 		);
 
 		card.appendChild(inner);
@@ -651,9 +663,10 @@ class DiscordStatus extends HTMLElement {
 		if (this.avatarHash) {
 			return `https://cdn.discordapp.com/avatars/${user?.id || this.userId}/${this.avatarHash}.png?size=128`;
 		}
-		const defaultIdx = (user?.discriminator === "0" || !user?.discriminator)
-			? Number((BigInt(user?.id || 0) >> 22n) % 6n)
-			: Number(user.discriminator) % 5;
+		const defaultIdx =
+			user?.discriminator === "0" || !user?.discriminator
+				? Number((BigInt(user?.id || 0) >> 22n) % 6n)
+				: Number(user.discriminator) % 5;
 		return `https://cdn.discordapp.com/embed/avatars/${defaultIdx}.png`;
 	}
 
@@ -677,7 +690,13 @@ class DiscordStatus extends HTMLElement {
 		} else {
 			activities.forEach((act, idx) => {
 				container.appendChild(
-					this._createActivityElement(act, idx, isHistory, historyTimestamp, data),
+					this._createActivityElement(
+						act,
+						idx,
+						isHistory,
+						historyTimestamp,
+						data,
+					),
 				);
 			});
 		}
@@ -686,7 +705,13 @@ class DiscordStatus extends HTMLElement {
 		return section;
 	}
 
-	_createActivityElement(act, idx, isHistory = false, historyTimestamp = null, data = null) {
+	_createActivityElement(
+		act,
+		idx,
+		isHistory = false,
+		historyTimestamp = null,
+		data = null,
+	) {
 		const isMusic = act.type === 2;
 
 		const item = document.createElement("div");
@@ -787,7 +812,11 @@ class DiscordStatus extends HTMLElement {
 	}
 
 	_getActivityImageUrl(act, data = null) {
-		if (data?.listening_to_spotify && data.spotify?.album_art_url && (act.name === "Spotify" || act.type === 2)) {
+		if (
+			data?.listening_to_spotify &&
+			data.spotify?.album_art_url &&
+			(act.name === "Spotify" || act.type === 2)
+		) {
 			return data.spotify.album_art_url;
 		}
 
