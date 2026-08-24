@@ -47,7 +47,8 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				name: "Humanoid",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/Hisohiso Banashi - 2018/09. Humanoid.m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/Hisohiso Banashi - 2018/Cover.webp",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/Hisohiso Banashi - 2018/Cover.webp",
 				lrc: "/assets/music/lrc/ZUTOMAYO/Hisohiso Banashi - 2018/09. Humanoid.lrc",
 			},
 			{
@@ -85,49 +86,56 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				name: "Inemuri Enseitai",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/Hisohiso Banashi - 2019/03. Inemuri Enseitai.m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/Hisohiso Banashi - 2019/Cover.webp",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/Hisohiso Banashi - 2019/Cover.webp",
 				lrc: "/assets/music/lrc/ZUTOMAYO/Hisohiso Banashi - 2019/03. Inemuri Enseitai.lrc",
 			},
 			{
 				name: "Haze Haseru Haterumade",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/Hisohiso Banashi - 2019/04. Haze Haseru Haterumade.m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/Hisohiso Banashi - 2019/Cover.webp",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/Hisohiso Banashi - 2019/Cover.webp",
 				lrc: "/assets/music/lrc/ZUTOMAYO/Hisohiso Banashi - 2019/04. Haze Haseru Haterumade.lrc",
 			},
 			{
 				name: "Kettobashita Moufu",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/Hisohiso Banashi - 2019/05. Kettobashita Moufu.m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/Hisohiso Banashi - 2019/Cover.webp",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/Hisohiso Banashi - 2019/Cover.webp",
 				lrc: "/assets/music/lrc/ZUTOMAYO/Hisohiso Banashi - 2019/05. Kettobashita Moufu.lrc",
 			},
 			{
 				name: "Dear. Mr_F_",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/Hisohiso Banashi - 2019/06. Dear. Mr_F_.m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/Hisohiso Banashi - 2019/Cover.webp",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/Hisohiso Banashi - 2019/Cover.webp",
 				lrc: "/assets/music/lrc/ZUTOMAYO/Hisohiso Banashi - 2019/06. Dear. Mr_F_.lrc",
 			},
 			{
 				name: "Konnakoto Soudou",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/Hisohiso Banashi - 2019/07. Konnakoto Soudou.m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/Hisohiso Banashi - 2019/Cover.webp",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/Hisohiso Banashi - 2019/Cover.webp",
 				lrc: "/assets/music/lrc/ZUTOMAYO/Hisohiso Banashi - 2019/07. Konnakoto Soudou.lrc",
 			},
 			{
 				name: "Glass to Rum Raisin",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/Hisohiso Banashi - 2019/10. Glass to Rum Raisin.m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/Hisohiso Banashi - 2019/Cover.webp",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/Hisohiso Banashi - 2019/Cover.webp",
 				lrc: "/assets/music/lrc/ZUTOMAYO/Hisohiso Banashi - 2019/10. Glass to Rum Raisin.lrc",
 			},
 			{
 				name: "Yasashiku Last Smile",
 				artist: "ずっと真夜中でいいのに。",
 				url: "/assets/music/song/ZUTOMAYO/Hisohiso Banashi - 2019/12. Yasashiku Last Smile.m4a",
-				cover: "/assets/music/cover/ZUTOMAYO/Hisohiso Banashi - 2019/Cover.webp",
+				cover:
+					"/assets/music/cover/ZUTOMAYO/Hisohiso Banashi - 2019/Cover.webp",
 				lrc: "/assets/music/lrc/ZUTOMAYO/Hisohiso Banashi - 2019/12. Yasashiku Last Smile.lrc",
 			},
 			{

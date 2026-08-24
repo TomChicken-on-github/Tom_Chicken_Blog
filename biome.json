@@ -6,7 +6,7 @@
     "useIgnoreFile": false
   },
   "files": {
-    "ignoreUnknown": false,
+    "ignoreUnknown": true,
     "includes": [
       "**",
       "!**/src/**/*.css",
@@ -14,7 +14,9 @@
       "!**/dist/**/*",
       "!**/node_modules/**/*",
       "!**/src/constants/icons-data.json",
-      "!**/src/constants/lqips.json"
+      "!**/src/constants/lqips.json",
+      "!**/src/content/**/*",
+      "!**/*.svg"
     ]
   },
   "formatter": {
