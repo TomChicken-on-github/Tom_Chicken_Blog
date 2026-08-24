@@ -530,7 +530,7 @@ class DiscordStatus extends HTMLElement {
 
 		// 右侧活动
 		inner.appendChild(
-			this._createActivitiesSection(activities, isHistory, historyTimestamp),
+			this._createActivitiesSection(activities, isHistory, historyTimestamp, data),
 		);
 
 		card.appendChild(inner);
@@ -547,7 +547,7 @@ class DiscordStatus extends HTMLElement {
 
 		const img = document.createElement("img");
 		img.className = "discord-avatar-img";
-		img.src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar || this.avatarHash}.png?size=128`;
+		img.src = this._getUserAvatarUrl(user);
 		img.alt = user.username;
 		img.loading = "eager";
 		img.onerror = () => {
@@ -579,6 +579,38 @@ class DiscordStatus extends HTMLElement {
 		statusText.textContent = status.text;
 		section.appendChild(statusText);
 
+		// 自定义状态 (Activity Type 4)
+		const customStatus = (data.activities || []).find((a) => a.type === 4);
+		if (customStatus && (customStatus.state || customStatus.emoji)) {
+			const customStatusEl = document.createElement("div");
+			customStatusEl.className = "discord-custom-status";
+
+			if (customStatus.emoji) {
+				if (customStatus.emoji.id) {
+					const emojiImg = document.createElement("img");
+					emojiImg.className = "custom-status-emoji";
+					const ext = customStatus.emoji.animated ? "gif" : "png";
+					emojiImg.src = `https://cdn.discordapp.com/emojis/${customStatus.emoji.id}.${ext}?size=32&quality=lossless`;
+					emojiImg.alt = customStatus.emoji.name || "";
+					customStatusEl.appendChild(emojiImg);
+				} else if (customStatus.emoji.name) {
+					const emojiSpan = document.createElement("span");
+					emojiSpan.className = "custom-status-emoji";
+					emojiSpan.textContent = customStatus.emoji.name;
+					customStatusEl.appendChild(emojiSpan);
+				}
+			}
+
+			if (customStatus.state) {
+				const textSpan = document.createElement("span");
+				textSpan.className = "custom-status-text";
+				textSpan.textContent = customStatus.state;
+				customStatusEl.appendChild(textSpan);
+			}
+
+			section.appendChild(customStatusEl);
+		}
+
 		// 客户端标签
 		const clientTags = [];
 		if (data.active_on_discord_desktop) clientTags.push("💻 Desktop");
@@ -604,10 +636,25 @@ class DiscordStatus extends HTMLElement {
 		return section;
 	}
 
+	_getUserAvatarUrl(user) {
+		if (user?.avatar) {
+			const ext = user.avatar.startsWith("a_") ? "gif" : "png";
+			return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${ext}?size=128`;
+		}
+		if (this.avatarHash) {
+			return `https://cdn.discordapp.com/avatars/${user?.id || this.userId}/${this.avatarHash}.png?size=128`;
+		}
+		const defaultIdx = (user?.discriminator === "0" || !user?.discriminator)
+			? Number((BigInt(user?.id || 0) >> 22n) % 6n)
+			: Number(user.discriminator) % 5;
+		return `https://cdn.discordapp.com/embed/avatars/${defaultIdx}.png`;
+	}
+
 	_createActivitiesSection(
 		activities,
 		isHistory = false,
 		historyTimestamp = null,
+		data = null,
 	) {
 		const section = document.createElement("div");
 		section.className = "discord-right";
@@ -623,7 +670,7 @@ class DiscordStatus extends HTMLElement {
 		} else {
 			activities.forEach((act, idx) => {
 				container.appendChild(
-					this._createActivityElement(act, idx, isHistory, historyTimestamp),
+					this._createActivityElement(act, idx, isHistory, historyTimestamp, data),
 				);
 			});
 		}
@@ -632,7 +679,7 @@ class DiscordStatus extends HTMLElement {
 		return section;
 	}
 
-	_createActivityElement(act, idx, isHistory = false, historyTimestamp = null) {
+	_createActivityElement(act, idx, isHistory = false, historyTimestamp = null, data = null) {
 		const isMusic = act.type === 2;
 
 		const item = document.createElement("div");
@@ -642,7 +689,7 @@ class DiscordStatus extends HTMLElement {
 		item.dataset.actIdx = String(idx);
 
 		// 图片
-		const imgUrl = this._getActivityImageUrl(act);
+		const imgUrl = this._getActivityImageUrl(act, data);
 		if (imgUrl) {
 			const img = document.createElement("img");
 			img.className = "activity-img";
@@ -732,17 +779,27 @@ class DiscordStatus extends HTMLElement {
 		return div;
 	}
 
-	_getActivityImageUrl(act) {
+	_getActivityImageUrl(act, data = null) {
+		if (data?.listening_to_spotify && data.spotify?.album_art_url && (act.name === "Spotify" || act.type === 2)) {
+			return data.spotify.album_art_url;
+		}
+
 		if (!act.assets?.large_image) return null;
 
 		const imgUrl = act.assets.large_image;
-		if (imgUrl.startsWith("mp:")) {
-			return `https://media.discordapp.net/${imgUrl.slice(3)}`;
+		if (imgUrl.startsWith("spotify:")) {
+			return `https://i.scdn.co/image/${imgUrl.slice(8)}`;
 		}
-		if (!imgUrl.startsWith("http")) {
+		if (imgUrl.startsWith("mp:")) {
+			return `https://media.discordapp.net/${imgUrl.replace(/^mp:\/?/, "")}`;
+		}
+		if (imgUrl.startsWith("http://") || imgUrl.startsWith("https://")) {
+			return imgUrl;
+		}
+		if (act.application_id) {
 			return `https://cdn.discordapp.com/app-assets/${act.application_id}/${imgUrl}.png`;
 		}
-		return imgUrl;
+		return null;
 	}
 
 	// ============ 活动更新 ============
