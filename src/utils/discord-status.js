@@ -458,14 +458,21 @@ class DiscordStatus extends HTMLElement {
 		let historyData = null;
 
 		if (isOffline) {
-			// 离线时从 Worker 获取历史记录
+			// 离线时从 Worker 获取历史记录，若 Worker 失败则降级到 localStorage
 			if (!this._historyFetched) {
-				this._historyData = await this._fetchHistoryFromWorker();
+				const remoteHistory = await this._fetchHistoryFromWorker();
+				this._historyData = remoteHistory?.act ? remoteHistory : this._loadLastActivity();
 				this._historyFetched = true;
 			}
 			historyData = this._historyData;
 			if (historyData?.act) {
 				activities = [historyData.act];
+			}
+		} else {
+			// 在线时重置历史拉取标志，并缓存当前最新的非自定义状态活动
+			this._historyFetched = false;
+			if (activities.length > 0) {
+				this._saveLastActivity(activities[0]);
 			}
 		}
 
@@ -919,17 +926,25 @@ class DiscordStatus extends HTMLElement {
 	}
 
 	_saveLastActivity(act) {
+		if (!act || act.type === 4) return;
 		try {
 			const data = {
 				t: Date.now(),
-				act: act,
+				act: {
+					name: act.name,
+					type: act.type,
+					details: act.details || "",
+					state: act.state || "",
+					assets: act.assets || null,
+					application_id: act.application_id || null,
+					timestamps: act.timestamps || null,
+				},
 			};
 			localStorage.setItem(
 				DiscordStatus.CONFIG.localStorageKey,
 				JSON.stringify(data),
 			);
 		} catch (e) {
-			// 静默失败，不影响主功能
 			console.debug("[DiscordStatus] Failed to save last activity:", e);
 		}
 	}
