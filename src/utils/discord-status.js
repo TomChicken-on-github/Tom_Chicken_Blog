@@ -5,14 +5,27 @@
  * 深度优化版本 - 性能、内存、网络全方位优化
  */
 
-// 工具函数：节流
+// 工具函数：节流（支持 trailing edge 执行，确保最终状态不丢失）
 const throttle = (fn, limit) => {
-	let inThrottle;
-	return (...args) => {
+	let inThrottle = false;
+	let lastArgs = null;
+	let lastThis = null;
+
+	return function throttled(...args) {
 		if (!inThrottle) {
 			fn.apply(this, args);
 			inThrottle = true;
-			setTimeout(() => (inThrottle = false), limit);
+			setTimeout(() => {
+				inThrottle = false;
+				if (lastArgs) {
+					throttled.apply(lastThis, lastArgs);
+					lastArgs = null;
+					lastThis = null;
+				}
+			}, limit);
+		} else {
+			lastArgs = args;
+			lastThis = this;
 		}
 	};
 };
@@ -63,6 +76,7 @@ class DiscordStatus extends HTMLElement {
 		this.heartbeat = null;
 		this.reconnectTimer = null;
 		this.pollTimer = null;
+		this.apiRetryTimer = null;
 
 		// 定时器管理
 		this.progressTimers = new Map();
@@ -95,7 +109,7 @@ class DiscordStatus extends HTMLElement {
 	}
 
 	static get observedAttributes() {
-		return ["data-user-id", "data-avatar"];
+		return ["data-user-id", "data-avatar", "data-worker-url"];
 	}
 
 	connectedCallback() {
@@ -145,6 +159,10 @@ class DiscordStatus extends HTMLElement {
 		if (this.pollTimer) {
 			clearInterval(this.pollTimer);
 			this.pollTimer = null;
+		}
+		if (this.apiRetryTimer) {
+			clearTimeout(this.apiRetryTimer);
+			this.apiRetryTimer = null;
 		}
 
 		this._clearActivityTimers();
@@ -245,7 +263,7 @@ class DiscordStatus extends HTMLElement {
 				console.log(
 					`[DiscordStatus] Retrying API in ${Math.round(delay)}ms...`,
 				);
-				setTimeout(() => this.fetchInitialData(retryAttempt + 1), delay);
+				this.apiRetryTimer = setTimeout(() => this.fetchInitialData(retryAttempt + 1), delay);
 			} else if (!this._hasError) {
 				this._hasError = true;
 				this._showError();
@@ -292,8 +310,8 @@ class DiscordStatus extends HTMLElement {
 
 			this.ws.onmessage = (event) => {
 				try {
-					const { op, d } = JSON.parse(event.data);
-					this._handleWsMessage(op, d);
+					const { op, d, t } = JSON.parse(event.data);
+					this._handleWsMessage(op, d, t);
 				} catch (err) {
 					console.error(
 						"[DiscordStatus] Failed to parse WebSocket message:",
@@ -307,6 +325,10 @@ class DiscordStatus extends HTMLElement {
 			};
 
 			this.ws.onclose = () => {
+				if (this.heartbeat) {
+					clearInterval(this.heartbeat);
+					this.heartbeat = null;
+				}
 				this.wsState = DiscordStatus.WS_STATE.DISCONNECTED;
 				if (
 					this.wsReconnectAttempts < DiscordStatus.CONFIG.maxWsReconnectAttempts
@@ -323,15 +345,18 @@ class DiscordStatus extends HTMLElement {
 		}
 	}
 
-	_handleWsMessage(op, d) {
+	_handleWsMessage(op, d, t) {
 		switch (op) {
 			case 1: // Hello
-				this.ws.send(
+				this.ws?.send(
 					JSON.stringify({
 						op: 2,
-						d: { subscribe_to_ids: [this.userId] },
+						d: { subscribe_to_id: this.userId },
 					}),
 				);
+				if (this.heartbeat) {
+					clearInterval(this.heartbeat);
+				}
 				this.heartbeat = setInterval(() => {
 					if (this.ws?.readyState === WebSocket.OPEN) {
 						this.ws.send(JSON.stringify({ op: 3 }));
@@ -340,9 +365,11 @@ class DiscordStatus extends HTMLElement {
 				break;
 
 			case 0: // Event
-				if (d.t === "INIT_STATE" || d.t === "PRESENCE_UPDATE") {
-					const userData = d.d[this.userId] || d.d;
-					this.render(userData);
+				if (t === "INIT_STATE" || t === "PRESENCE_UPDATE") {
+					const userData = (d && d[this.userId]) ? d[this.userId] : d;
+					if (userData) {
+						this.render(userData);
+					}
 				}
 				break;
 		}
@@ -444,7 +471,7 @@ class DiscordStatus extends HTMLElement {
 
 		// 检查活动是否变化
 		const currentKey = activities
-			.map((a) => `${a.name}-${a.details}-${a.state}`)
+			.map((a) => `${a.name}-${a.details}-${a.state}-${a.timestamps?.start || ""}`)
 			.join("|");
 		if (this._lastActivityKey !== currentKey) {
 			this._lastActivityKey = currentKey;
@@ -606,16 +633,13 @@ class DiscordStatus extends HTMLElement {
 	}
 
 	_createActivityElement(act, idx, isHistory = false, historyTimestamp = null) {
-		const activityId = `act-${idx}-${act.name.slice(0, 10)}-${(act.timestamps?.start || 0) % 10000}`;
 		const isMusic = act.type === 2;
 
 		const item = document.createElement("div");
 		item.className = isHistory
 			? "activity-item activity-item-history"
 			: "activity-item";
-		if (!isHistory) {
-			item.dataset.activityId = activityId;
-		}
+		item.dataset.actIdx = String(idx);
 
 		// 图片
 		const imgUrl = this._getActivityImageUrl(act);
@@ -663,15 +687,14 @@ class DiscordStatus extends HTMLElement {
 				progress.className = "music-progress";
 				progress.innerHTML = `
           <div class="progress-bar-bg">
-            <div class="progress-bar-fill" id="progress-${activityId}" style="width:0%"></div>
+            <div class="progress-bar-fill" style="width:0%"></div>
           </div>
-          <div class="time-display" id="time-${activityId}">0:00 / 0:00</div>
+          <div class="time-display">0:00 / 0:00</div>
         `;
 				content.appendChild(progress);
 			} else {
 				const elapsed = document.createElement("div");
 				elapsed.className = "elapsed-time";
-				elapsed.id = `time-${activityId}`;
 				elapsed.textContent = "🎮 0:00:00";
 				content.appendChild(elapsed);
 			}
@@ -727,35 +750,43 @@ class DiscordStatus extends HTMLElement {
 	_startActivityTimer(act, idx) {
 		if (!this._isVisible) return;
 
-		const activityId = `act-${idx}-${act.name.slice(0, 10)}-${(act.timestamps?.start || 0) % 10000}`;
+		const timerKey = `act_${idx}`;
 		const isMusic = act.type === 2 && act.timestamps?.end;
 
 		const updateFn = isMusic
-			? () => this._updateMusicProgress(act, activityId)
-			: () => this._updateElapsedTime(act, activityId);
+			? () => this._updateMusicProgress(act, idx, timerKey)
+			: () => this._updateElapsedTime(act, idx, timerKey);
 
 		updateFn();
 		const timer = setInterval(
 			updateFn,
 			DiscordStatus.CONFIG.progressUpdateInterval,
 		);
-		this.progressTimers.set(activityId, timer);
+		this.progressTimers.set(timerKey, timer);
 	}
 
-	_updateMusicProgress(act, activityId) {
+	_updateMusicProgress(act, idx, timerKey) {
 		if (!this._isVisible) return;
 
-		const fillEl = this.querySelector(`#progress-${activityId}`);
-		const timeEl = this.querySelector(`#time-${activityId}`);
+		const actItem = this.querySelector(`[data-act-idx="${idx}"]`);
+		if (!actItem) {
+			this._cleanupActivityTimer(timerKey);
+			return;
+		}
+
+		const fillEl = actItem.querySelector(".progress-bar-fill");
+		const timeEl = actItem.querySelector(".time-display");
 
 		if (!fillEl) {
-			this._cleanupActivityTimer(activityId);
+			this._cleanupActivityTimer(timerKey);
 			return;
 		}
 
 		const now = Date.now();
-		const total = act.timestamps.end - act.timestamps.start;
-		const current = now - act.timestamps.start;
+		const start = act.timestamps?.start || now;
+		const end = act.timestamps?.end || start;
+		const total = Math.max(1, end - start);
+		const current = Math.max(0, Math.min(now - start, total));
 		const pct = Math.min(Math.max((current / total) * 100, 0), 100);
 
 		fillEl.style.width = `${pct}%`;
@@ -769,25 +800,32 @@ class DiscordStatus extends HTMLElement {
 		}
 
 		if (pct >= 100) {
-			this._cleanupActivityTimer(activityId);
+			this._cleanupActivityTimer(timerKey);
 			const endTimer = setTimeout(() => {
 				this.fetchInitialData();
-				this.songEndTimers.delete(activityId);
+				this.songEndTimers.delete(timerKey);
 			}, DiscordStatus.CONFIG.songEndDelay);
-			this.songEndTimers.set(activityId, endTimer);
+			this.songEndTimers.set(timerKey, endTimer);
 		}
 	}
 
-	_updateElapsedTime(act, activityId) {
+	_updateElapsedTime(act, idx, timerKey) {
 		if (!this._isVisible) return;
 
-		const timeEl = this.querySelector(`#time-${activityId}`);
-		if (!timeEl) {
-			this._cleanupActivityTimer(activityId);
+		const actItem = this.querySelector(`[data-act-idx="${idx}"]`);
+		if (!actItem) {
+			this._cleanupActivityTimer(timerKey);
 			return;
 		}
 
-		const elapsed = Date.now() - act.timestamps.start;
+		const timeEl = actItem.querySelector(".elapsed-time");
+		if (!timeEl) {
+			this._cleanupActivityTimer(timerKey);
+			return;
+		}
+
+		const start = act.timestamps?.start || Date.now();
+		const elapsed = Math.max(0, Date.now() - start);
 		const hours = Math.floor(elapsed / 3600000);
 		const mins = Math.floor((elapsed % 3600000) / 60000);
 		const secs = Math.floor((elapsed % 60000) / 1000);
@@ -799,11 +837,11 @@ class DiscordStatus extends HTMLElement {
 		}
 	}
 
-	_cleanupActivityTimer(activityId) {
-		const timer = this.progressTimers.get(activityId);
+	_cleanupActivityTimer(timerKey) {
+		const timer = this.progressTimers.get(timerKey);
 		if (timer) {
 			clearInterval(timer);
-			this.progressTimers.delete(activityId);
+			this.progressTimers.delete(timerKey);
 		}
 	}
 
