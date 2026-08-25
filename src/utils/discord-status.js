@@ -50,6 +50,7 @@ class DiscordStatus extends HTMLElement {
 		pollInterval: 30000, // 降级轮询间隔
 		workerUrl: "https://discord-status.tomchicken-blog.workers.dev", // Worker API 地址
 		localStorageKey: "dc_last",
+		cacheKey: "dc_presence_cache",
 		statusConfigs: Object.freeze({
 			online: { color: "#23a55a", text: "Online", class: "status-online" },
 			idle: { color: "#f0b232", text: "Idle", class: "status-idle" },
@@ -92,7 +93,7 @@ class DiscordStatus extends HTMLElement {
 		this._lastActivityKey = "";
 		this._pendingData = null;
 		this._isVisible = true;
-		this._isInViewport = false;
+		this._isInViewport = true;
 		this._hasError = false;
 		this._historyData = null;
 		this._historyFetched = false;
@@ -115,11 +116,18 @@ class DiscordStatus extends HTMLElement {
 		this.avatarHash = this.getAttribute("data-avatar") || this.avatarHash;
 		this.workerUrl = this.getAttribute("data-worker-url") || this.workerUrl;
 
-		this._renderSkeleton();
+		// 1. 优先从持久化缓存瞬间完成 0ms 渲染（杜绝白屏/卡骨架屏）
+		const cached = this._loadCachedPresence();
+		if (cached) {
+			this._renderUnsafe(cached);
+		} else {
+			this._renderSkeleton();
+		}
+
 		this._setupObservers();
 		this._setupVisibilityListener();
 
-		// 初始连接
+		// 2. 并行获取实时最新数据并无感替换
 		this.fetchInitialData();
 		this.connectWebSocket();
 	}
@@ -183,11 +191,6 @@ class DiscordStatus extends HTMLElement {
 				(entries) => {
 					const [entry] = entries;
 					this._isInViewport = entry.isIntersecting;
-
-					if (this._isInViewport && this._pendingData) {
-						this.render(this._pendingData);
-						this._pendingData = null;
-					}
 				},
 				{ rootMargin: "50px" },
 			);
@@ -230,7 +233,7 @@ class DiscordStatus extends HTMLElement {
 
 		try {
 			const controller = new AbortController();
-			const timeoutId = setTimeout(() => controller.abort(), 10000);
+			const timeoutId = setTimeout(() => controller.abort(), 6000);
 
 			const res = await fetch(`${DiscordStatus.CONFIG.apiUrl}${this.userId}`, {
 				signal: controller.signal,
@@ -240,30 +243,44 @@ class DiscordStatus extends HTMLElement {
 			if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
 			const json = await res.json();
-			if (json.success) {
+			if (json.success && json.data) {
 				this._hasError = false;
 				this.render(json.data);
 			} else {
 				throw new Error("API returned unsuccessful");
 			}
 		} catch (err) {
-			console.error("[DiscordStatus] API fetch failed:", err.message);
+			console.warn("[DiscordStatus] API fetch warning:", err.message);
 
 			if (retryAttempt < DiscordStatus.CONFIG.maxApiRetryAttempts) {
 				const delay = getExponentialDelay(
 					retryAttempt,
 					DiscordStatus.CONFIG.baseApiRetryDelay,
 				);
-				console.log(
-					`[DiscordStatus] Retrying API in ${Math.round(delay)}ms...`,
-				);
 				this.apiRetryTimer = setTimeout(
 					() => this.fetchInitialData(retryAttempt + 1),
 					delay,
 				);
 			} else if (!this._hasError) {
-				this._hasError = true;
-				this._showError();
+				// 网络完全失败时，保证卡片优雅呈现缓存/基础状态，绝不白屏
+				if (!this.querySelector(".discord-card")) {
+					const cached = this._loadCachedPresence();
+					if (cached) {
+						this._renderUnsafe(cached);
+					} else {
+						const fallbackData = {
+							discord_user: {
+								id: this.userId,
+								username: "tom_chicken114514",
+								global_name: "Tom_Chicken",
+								avatar: this.avatarHash,
+							},
+							discord_status: "offline",
+							activities: [],
+						};
+						this._renderUnsafe(fallbackData);
+					}
+				}
 			}
 		}
 	}
@@ -281,9 +298,6 @@ class DiscordStatus extends HTMLElement {
 		if (
 			this.wsReconnectAttempts >= DiscordStatus.CONFIG.maxWsReconnectAttempts
 		) {
-			console.log(
-				"[DiscordStatus] Max WebSocket retries reached, switching to polling mode",
-			);
 			this.wsState = DiscordStatus.WS_STATE.FAILED;
 			this._startPolling();
 			return;
@@ -295,7 +309,6 @@ class DiscordStatus extends HTMLElement {
 			this.ws = new WebSocket(DiscordStatus.CONFIG.wsUrl);
 
 			this.ws.onopen = () => {
-				console.log("[DiscordStatus] WebSocket connected");
 				this.wsState = DiscordStatus.WS_STATE.CONNECTED;
 				this.wsReconnectAttempts = 0;
 				if (this.pollTimer) {
@@ -317,7 +330,7 @@ class DiscordStatus extends HTMLElement {
 			};
 
 			this.ws.onerror = (err) => {
-				console.error("[DiscordStatus] WebSocket error:", err);
+				console.debug("[DiscordStatus] WebSocket error:", err);
 			};
 
 			this.ws.onclose = () => {
@@ -335,7 +348,7 @@ class DiscordStatus extends HTMLElement {
 				}
 			};
 		} catch (err) {
-			console.error("[DiscordStatus] WebSocket connection failed:", err);
+			console.debug("[DiscordStatus] WebSocket connection failed:", err);
 			this.wsState = DiscordStatus.WS_STATE.DISCONNECTED;
 			this._scheduleWsReconnect();
 		}
@@ -387,7 +400,6 @@ class DiscordStatus extends HTMLElement {
 
 	_startPolling() {
 		if (this.pollTimer) return;
-		console.log("[DiscordStatus] Starting HTTP polling mode");
 		this.fetchInitialData();
 		this.pollTimer = setInterval(() => {
 			if (this._isVisible) {
@@ -417,19 +429,13 @@ class DiscordStatus extends HTMLElement {
     `;
 	}
 
-	_showError() {
-		this.innerHTML = '<div class="discord-error">加载失败，请刷新页面</div>';
-	}
-
 	render(data) {
-		if (!this._isInViewport) {
-			this._pendingData = data;
-			return;
-		}
+		if (!data) return;
+		this._saveCachedPresence(data);
 		this._throttledRender(data);
 	}
 
-	async _renderUnsafe(data) {
+	_renderUnsafe(data) {
 		if (!this._isVisible) {
 			this._pendingData = data;
 			return;
@@ -447,16 +453,19 @@ class DiscordStatus extends HTMLElement {
 		let historyData = null;
 
 		if (isOffline) {
-			if (!this._historyFetched) {
-				const remoteHistory = await this._fetchHistoryFromWorker();
-				if (this._renderId !== renderId) return;
+			// 先立即读取本地历史动态，实现零等待渲染
+			historyData = this._historyData || this._loadLastActivity();
 
-				this._historyData = remoteHistory?.act
-					? remoteHistory
-					: this._loadLastActivity();
+			// 后台非阻塞拉取 Worker 远程历史动态（不阻塞主渲染）
+			if (!this._historyFetched && this.workerUrl) {
 				this._historyFetched = true;
+				this._fetchHistoryFromWorker().then((remoteHistory) => {
+					if (remoteHistory?.act && this._renderId === renderId) {
+						this._historyData = remoteHistory;
+						this._renderUnsafe(data);
+					}
+				});
 			}
-			historyData = this._historyData;
 		} else {
 			this._historyFetched = false;
 			if (activities.length > 0) {
@@ -1112,6 +1121,30 @@ class DiscordStatus extends HTMLElement {
 		}
 	}
 
+	_saveCachedPresence(data) {
+		if (!data?.discord_user) return;
+		try {
+			localStorage.setItem(DiscordStatus.CONFIG.cacheKey, JSON.stringify(data));
+		} catch (e) {
+			console.debug("[DiscordStatus] Failed to cache presence:", e);
+		}
+	}
+
+	_loadCachedPresence() {
+		try {
+			const raw = localStorage.getItem(DiscordStatus.CONFIG.cacheKey);
+			if (!raw) return null;
+			const data = JSON.parse(raw);
+			if (data?.discord_user) {
+				return data;
+			}
+			return null;
+		} catch (e) {
+			console.debug("[DiscordStatus] Failed to load cached presence:", e);
+			return null;
+		}
+	}
+
 	_formatRelativeTime(timestamp) {
 		if (!timestamp) return "";
 		const now = Date.now();
@@ -1131,4 +1164,17 @@ class DiscordStatus extends HTMLElement {
 
 if (!customElements.get("discord-status")) {
 	customElements.define("discord-status", DiscordStatus);
+}
+
+// 适配 Astro 与 Swup 页面路由切换
+if (typeof window !== "undefined") {
+	const refreshDiscordCards = () => {
+		document.querySelectorAll("discord-status").forEach((el) => {
+			if (typeof el.fetchInitialData === "function") {
+				el.fetchInitialData();
+			}
+		});
+	};
+	document.addEventListener("astro:page-load", refreshDiscordCards);
+	document.addEventListener("swup:contentReplaced", refreshDiscordCards);
 }
