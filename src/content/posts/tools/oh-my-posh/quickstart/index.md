@@ -40,7 +40,7 @@ https://ohmyposh.dev/
 ## 前置条件
 - 已安装 **Windows Terminal**  （Windows 11 自带，Windows 10 自行安装）
 ::github{repo="microsoft/terminal"}
-推荐使用 `Scoop` 安装 Powershell，[Scoop 使用教程](https://blog.tomchicken.icu/posts/tools/scoop/quickstart/)  
+推荐使用 `Scoop` 安装 Windows Terminal，[Scoop 使用教程](https://blog.tomchicken.icu/posts/tools/scoop/quickstart/)  
 
 ```powershell
 scoop install extras/windows-terminal
@@ -75,7 +75,12 @@ scoop install Maple-Mono-NF-CN
 ## 软件安装
 
 ### 1. 修改 Windows Terminal 字体
-进入 **Windows Terminal** 的设置，将 `配置文件` -> `PowerShell`（也可以修改`默认值`） -> `外观` -> `字体` 的值修改为 **支持 Nerd-Font** 的字体，如 `Maple Mono NF CN`
+按下 `win` + `R` 键，输入 `wt` 后按下回车以打开 Windows Terminal
+![运行 Windows Terminal](./run_windows_terminal.png)
+打开 Windows Terminal 的设置，进入 `配置文件` -> `PowerShell`（也可以修改`默认值`） -> `外观` ，将 `字体` 的值修改为 **支持 Nerd-Font** 的字体，如 `Maple Mono NF CN`
+![打开 Windows Terminal](./open_windows_terminal_settings.png)
+![进入外观设置](./open_aspect_settings.png)
+![设置为支持 Nerd-Font 的字体](./set_font.png)
 ### 2. 安装 Oh My Posh 本体
 推荐使用 `Scoop` 安装 `Oh My Posh`，[Scoop 使用教程](https://blog.tomchicken.icu/posts/tools/scoop/quickstart/)  
 ```powershell
@@ -99,7 +104,7 @@ notepad $PROFILE
 
 在打开的记事本末尾，添加以下内容：
 
-```powershell
+```powershell title="Microsoft.PowerShell_profile.ps1"
 oh-my-posh init pwsh | Invoke-Expression
 ```
 
@@ -122,10 +127,9 @@ oh-my-posh init pwsh | Invoke-Expression
 ```powershell
 notepad $PROFILE
 ```
-将刚刚初始化 Oh My Posh 的那行修改为带 `--config` 参数的形式：
-```powershell
-# 修改前：oh-my-posh init pwsh | Invoke-Expression
-# 修改后（以 amro 为例）：
+将刚刚初始化 Oh My Posh 的命令修改，添加 `--config` 参数：
+```powershell title="Microsoft.PowerShell_profile.ps1" showLineNumbers=false del={1} ins={2}
+oh-my-posh init pwsh | Invoke-Expression
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\amro.omp.json" | Invoke-Expression
 ```
 修改完成后保存，输入如下命令重载或直接重启终端生效
@@ -145,10 +149,11 @@ scoop install terminal-icons
 ```powershell
 notepad $PROFILE
 ```
-在配置文件中添加这一行
-```powershell
+在配置文件中添加这一行，**记得保存**
+```powershell title="Microsoft.PowerShell_profile.ps1"
 Import-Module -Name Terminal-Icons
 ```
+
 
 ## 提升终端体验の实用工具（预告）
 

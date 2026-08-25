@@ -96,7 +96,7 @@ Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 如果以管理员身份运行此命令，可能会遇到以下输出:  
 `Running the installer as administrator is disabled by default`  
 参考 https://github.com/ScoopInstaller/Install#for-admin  
-这是出于安全考虑官方默认禁止了以管理员身份安装，如果你清楚你自己在做什么，需要以管理员身份安装 Scoop，请运行下方的命令
+这是出于安全考虑官方默认禁止了以管理员身份安装，如果你清楚**你自己在做什么**，需要以管理员身份安装 Scoop，请运行下方的命令
 :::
 
 ```powershell
@@ -134,13 +134,18 @@ Scoop 可以使用 `scoop search 软件名` 命令搜索软件，但该命令的
 scoop install scoop-search
 ```
 
-### 启用 Aria2 加速下载
-Aria2 是一个知名的开源多线程下载器，Scoop 可以利用 Aria2 实现多线程下载，从而加快软件包下载速度，启用它非常非常简单，只需要通过 Scoop 下载安装 Aria2 ，Scoop 会启动使用它下载，~~非常的智能~~
+### 启用多线程下载
+> Aria2 是一款开源的知名轻量级多协议与多源下载工具
+> 支持 HTTP/HTTPS、FTP、SFTP、BitTorrent 和 Metalink
+
+::github{repo="aria2/aria2"}
+
+Scoop 可以利用 Aria2 加速下载，仅需通过 Scoop 安装该工具 ，Scoop 会自动配置启用 Aria2 进行下载任务，:spoiler[~~非常的智能~~]
 ```powershell
 scoop install aria2
 ```
 
-2. **设置命令别名** （可选）
+1. **设置命令别名** （可选）
 :::note
 scoop-search 的调用命令默认为 `scoop-search.exe <term>`   
 每次键入会有些麻烦，所以可以修改配置文件，让 `scoop-search` 接管 `scoop search` 命令
