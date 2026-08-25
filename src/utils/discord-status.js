@@ -87,17 +87,15 @@ class DiscordStatus extends HTMLElement {
 		this.avatarHash = "627069fe38fef6f76b72a7f67f4cf148";
 		this.workerUrl = DiscordStatus.CONFIG.workerUrl;
 
-		// 状态追踪
+		// 状态与渲染追踪
+		this._renderId = 0;
 		this._lastActivityKey = "";
 		this._pendingData = null;
 		this._isVisible = true;
 		this._isInViewport = false;
 		this._hasError = false;
-		this._historyData = null; // 从 Worker 获取的历史数据
-		this._historyFetched = false; // 是否已获取过历史
-
-		// 缓存的 DOM 元素
-		this._rootElement = null;
+		this._historyData = null;
+		this._historyFetched = false;
 
 		// 节流渲染函数
 		this._throttledRender = throttle(this._renderUnsafe.bind(this), 16);
@@ -134,7 +132,6 @@ class DiscordStatus extends HTMLElement {
 	// ============ 生命周期管理 ============
 
 	_cleanup() {
-		// WebSocket
 		if (this.ws) {
 			this.ws.onopen = null;
 			this.ws.onmessage = null;
@@ -147,7 +144,6 @@ class DiscordStatus extends HTMLElement {
 		}
 		this.wsState = DiscordStatus.WS_STATE.DISCONNECTED;
 
-		// 定时器
 		if (this.heartbeat) {
 			clearInterval(this.heartbeat);
 			this.heartbeat = null;
@@ -182,7 +178,6 @@ class DiscordStatus extends HTMLElement {
 	// ============ 可见性和视口管理 ============
 
 	_setupObservers() {
-		// IntersectionObserver - 检测是否在视口内
 		if ("IntersectionObserver" in window) {
 			this._intersectionObserver = new IntersectionObserver(
 				(entries) => {
@@ -222,7 +217,6 @@ class DiscordStatus extends HTMLElement {
 			this._isVisible = document.visibilityState === "visible";
 
 			if (!wasVisible && this._isVisible) {
-				// 页面重新可见，刷新数据
 				this.fetchInitialData();
 			}
 		};
@@ -304,7 +298,6 @@ class DiscordStatus extends HTMLElement {
 				console.log("[DiscordStatus] WebSocket connected");
 				this.wsState = DiscordStatus.WS_STATE.CONNECTED;
 				this.wsReconnectAttempts = 0;
-				// 停止轮询（如果在轮询）
 				if (this.pollTimer) {
 					clearInterval(this.pollTimer);
 					this.pollTimer = null;
@@ -387,10 +380,6 @@ class DiscordStatus extends HTMLElement {
 			DiscordStatus.CONFIG.baseWsReconnectDelay,
 		);
 
-		console.log(
-			`[DiscordStatus] Reconnecting WebSocket in ${Math.round(delay)}ms (attempt ${this.wsReconnectAttempts})...`,
-		);
-
 		this.reconnectTimer = setTimeout(() => {
 			this.connectWebSocket();
 		}, delay);
@@ -433,56 +422,52 @@ class DiscordStatus extends HTMLElement {
 	}
 
 	render(data) {
-		// 如果不在视口内，缓存数据稍后渲染
 		if (!this._isInViewport) {
 			this._pendingData = data;
 			return;
 		}
-
-		// 节流到 ~60fps
 		this._throttledRender(data);
 	}
 
 	async _renderUnsafe(data) {
-		// 页面不可见时暂停渲染（但保留数据）
 		if (!this._isVisible) {
 			this._pendingData = data;
 			return;
 		}
 
+		const renderId = ++this._renderId;
 		const user = data.discord_user;
 		const isOffline = data.discord_status === "offline";
 		const status =
 			DiscordStatus.CONFIG.statusConfigs[data.discord_status] ||
 			DiscordStatus.CONFIG.statusConfigs.offline;
-		let activities = (data.activities || [])
+		const activities = (data.activities || [])
 			.filter((a) => a.type !== 4)
 			.slice(0, 2);
 		let historyData = null;
 
 		if (isOffline) {
-			// 离线时从 Worker 获取历史记录，若 Worker 失败则降级到 localStorage
 			if (!this._historyFetched) {
 				const remoteHistory = await this._fetchHistoryFromWorker();
+				if (this._renderId !== renderId) return;
+
 				this._historyData = remoteHistory?.act
 					? remoteHistory
 					: this._loadLastActivity();
 				this._historyFetched = true;
 			}
 			historyData = this._historyData;
-			if (historyData?.act) {
-				activities = [historyData.act];
-			}
 		} else {
-			// 在线时重置历史拉取标志，并缓存当前最新的非自定义状态活动
 			this._historyFetched = false;
 			if (activities.length > 0) {
 				this._saveLastActivity(activities[0]);
 			}
 		}
 
-		// 检查活动是否变化
-		const currentKey = activities
+		const isHistoryMode = isOffline && Boolean(historyData?.act);
+		const displayActivities = isHistoryMode ? [historyData.act] : activities;
+
+		const currentKey = displayActivities
 			.map(
 				(a) => `${a.name}-${a.details}-${a.state}-${a.timestamps?.start || ""}`,
 			)
@@ -492,14 +477,13 @@ class DiscordStatus extends HTMLElement {
 			this._clearActivityTimers();
 		}
 
-		// 使用 DocumentFragment 构建 DOM
 		const fragment = document.createDocumentFragment();
 		const card = this._createCard(
 			user,
 			status,
-			activities,
+			displayActivities,
 			data,
-			!!historyData,
+			isHistoryMode,
 			historyData?.t,
 		);
 		fragment.appendChild(card);
@@ -507,9 +491,8 @@ class DiscordStatus extends HTMLElement {
 		this.innerHTML = "";
 		this.appendChild(fragment);
 
-		// 启动活动更新（仅非历史活动）
-		if (!historyData) {
-			activities.forEach((act, idx) => {
+		if (!isHistoryMode) {
+			displayActivities.forEach((act, idx) => {
 				if (act.timestamps?.start) {
 					this._startActivityTimer(act, idx);
 				}
@@ -563,11 +546,19 @@ class DiscordStatus extends HTMLElement {
 		// 头像
 		const avatarWrapper = document.createElement("div");
 		avatarWrapper.className = "avatar-wrapper";
+		avatarWrapper.title = "在 Discord 中查看个人资料";
+		avatarWrapper.style.cursor = "pointer";
+		avatarWrapper.onclick = () => {
+			window.open(
+				`https://discord.com/users/${user?.id || this.userId}`,
+				"_blank",
+			);
+		};
 
 		const img = document.createElement("img");
 		img.className = "discord-avatar-img";
 		img.src = this._getUserAvatarUrl(user);
-		img.alt = user.username;
+		img.alt = user?.username || "Discord Avatar";
 		img.loading = "eager";
 		img.onerror = () => {
 			img.src = this._avatarFallbackSvg;
@@ -581,22 +572,20 @@ class DiscordStatus extends HTMLElement {
 		avatarWrapper.appendChild(statusIndicator);
 		section.appendChild(avatarWrapper);
 
-		// 用户信息
+		// 昵称
 		const displayName = document.createElement("div");
 		displayName.className = "discord-display-name";
-		displayName.textContent = user.global_name || user.username;
+		displayName.textContent =
+			user?.global_name || user?.username || "Discord User";
 		section.appendChild(displayName);
 
-		const username = document.createElement("div");
-		username.className = "discord-username";
-		username.textContent = `@${user.username}`;
-		section.appendChild(username);
-
-		const statusText = document.createElement("div");
-		statusText.className = "discord-status-text";
-		statusText.style.color = status.color;
-		statusText.textContent = status.text;
-		section.appendChild(statusText);
+		// 用户名 (@handle)
+		if (user?.username) {
+			const username = document.createElement("div");
+			username.className = "discord-username";
+			username.textContent = `@${user.username}`;
+			section.appendChild(username);
+		}
 
 		// 自定义状态 (Activity Type 4)
 		const customStatus = (data.activities || []).find((a) => a.type === 4);
@@ -712,7 +701,10 @@ class DiscordStatus extends HTMLElement {
 		historyTimestamp = null,
 		data = null,
 	) {
-		const isMusic = act.type === 2;
+		const isMusic = act.type === 2 || act.name === "Spotify";
+		const isSpotifyTrack =
+			data?.listening_to_spotify && data.spotify?.track_id && isMusic;
+		const isStreaming = act.type === 1 && Boolean(act.url);
 
 		const item = document.createElement("div");
 		item.className = isHistory
@@ -720,30 +712,79 @@ class DiscordStatus extends HTMLElement {
 			: "activity-item";
 		item.dataset.actIdx = String(idx);
 
-		// 图片
+		if (!isHistory && isSpotifyTrack) {
+			item.classList.add("is-clickable");
+			item.title = "在 Spotify 中打开";
+			item.onclick = () => {
+				window.open(
+					`https://open.spotify.com/track/${data.spotify.track_id}`,
+					"_blank",
+				);
+			};
+		} else if (!isHistory && isStreaming) {
+			item.classList.add("is-clickable");
+			item.title = "观看直播";
+			item.onclick = () => {
+				window.open(act.url, "_blank");
+			};
+		}
+
+		// 图片与小角标
 		const imgUrl = this._getActivityImageUrl(act, data);
 		if (imgUrl) {
+			const imgWrapper = document.createElement("div");
+			imgWrapper.className = "activity-img-wrapper";
+
 			const img = document.createElement("img");
 			img.className = "activity-img";
 			img.src = imgUrl;
 			img.alt = "";
 			img.loading = "lazy";
 			img.onerror = () => {
-				img.replaceWith(this._createIconFallback(act.name, act.type));
+				imgWrapper.replaceWith(this._createIconFallback(act.name, act.type));
 			};
-			item.appendChild(img);
+			imgWrapper.appendChild(img);
+
+			const smallUrl = this._getSmallImageUrl(act);
+			if (smallUrl) {
+				const smallImg = document.createElement("img");
+				smallImg.className = "activity-small-img";
+				smallImg.src = smallUrl;
+				smallImg.alt = act.assets?.small_text || "";
+				if (act.assets?.small_text) {
+					smallImg.title = act.assets.small_text;
+				}
+				smallImg.loading = "lazy";
+				imgWrapper.appendChild(smallImg);
+			}
+
+			item.appendChild(imgWrapper);
 		} else {
 			item.appendChild(this._createIconFallback(act.name, act.type));
 		}
 
-		// 内容
+		// 内容区
 		const content = document.createElement("div");
 		content.className = "activity-content";
+
+		// 标题栏（包含名称与 Spotify 均衡器动画）
+		const header = document.createElement("div");
+		header.className = "activity-header";
 
 		const name = document.createElement("div");
 		name.className = "activity-name";
 		name.textContent = act.name;
-		content.appendChild(name);
+		header.appendChild(name);
+
+		if (isMusic && !isHistory) {
+			const eq = document.createElement("div");
+			eq.className = "spotify-equalizer";
+			eq.title = "正在播放";
+			eq.innerHTML = "<span></span><span></span><span></span><span></span>";
+			header.appendChild(eq);
+		}
+
+		content.appendChild(header);
 
 		if (act.details) {
 			const details = document.createElement("div");
@@ -757,6 +798,14 @@ class DiscordStatus extends HTMLElement {
 			state.className = "activity-state";
 			state.textContent = act.state;
 			content.appendChild(state);
+		}
+
+		// Party (组队人数)
+		if (act.party?.size && Array.isArray(act.party.size)) {
+			const partyEl = document.createElement("div");
+			partyEl.className = "activity-party";
+			partyEl.textContent = `👥 队伍 (${act.party.size[0]}/${act.party.size[1]})`;
+			content.appendChild(partyEl);
 		}
 
 		// 时间/进度（仅非历史模式）
@@ -779,11 +828,11 @@ class DiscordStatus extends HTMLElement {
 			}
 		}
 
-		// 历史时间戳 subtle tag
+		// 历史时间戳（人性化相对时间）
 		if (isHistory && historyTimestamp) {
 			const timeTag = document.createElement("div");
 			timeTag.className = "activity-history-time";
-			timeTag.textContent = `🕐 ${this._formatDateTime(historyTimestamp)}`;
+			timeTag.textContent = `🕐 ${this._formatRelativeTime(historyTimestamp)}`;
 			content.appendChild(timeTag);
 		}
 
@@ -838,13 +887,33 @@ class DiscordStatus extends HTMLElement {
 		return null;
 	}
 
+	_getSmallImageUrl(act) {
+		if (!act.assets?.small_image) return null;
+
+		const imgUrl = act.assets.small_image;
+		if (imgUrl.startsWith("spotify:")) {
+			return `https://i.scdn.co/image/${imgUrl.slice(8)}`;
+		}
+		if (imgUrl.startsWith("mp:")) {
+			return `https://media.discordapp.net/${imgUrl.replace(/^mp:\/?/, "")}`;
+		}
+		if (imgUrl.startsWith("http://") || imgUrl.startsWith("https://")) {
+			return imgUrl;
+		}
+		if (act.application_id) {
+			return `https://cdn.discordapp.com/app-assets/${act.application_id}/${imgUrl}.png`;
+		}
+		return null;
+	}
+
 	// ============ 活动更新 ============
 
 	_startActivityTimer(act, idx) {
 		if (!this._isVisible) return;
 
 		const timerKey = `act_${idx}`;
-		const isMusic = act.type === 2 && act.timestamps?.end;
+		const isMusic =
+			(act.type === 2 || act.name === "Spotify") && act.timestamps?.end;
 
 		const updateFn = isMusic
 			? () => this._updateMusicProgress(act, idx, timerKey)
@@ -936,6 +1005,11 @@ class DiscordStatus extends HTMLElement {
 			clearInterval(timer);
 			this.progressTimers.delete(timerKey);
 		}
+		const endTimer = this.songEndTimers.get(timerKey);
+		if (endTimer) {
+			clearTimeout(endTimer);
+			this.songEndTimers.delete(timerKey);
+		}
 	}
 
 	// ============ 历史记录管理 ============
@@ -983,7 +1057,6 @@ class DiscordStatus extends HTMLElement {
 			const raw = localStorage.getItem(DiscordStatus.CONFIG.localStorageKey);
 			if (!raw) return null;
 			const data = JSON.parse(raw);
-			// 简单校验
 			if (data?.t && data?.act) {
 				return data;
 			}
@@ -994,15 +1067,20 @@ class DiscordStatus extends HTMLElement {
 		}
 	}
 
-	_formatDateTime(timestamp) {
+	_formatRelativeTime(timestamp) {
+		if (!timestamp) return "";
+		const now = Date.now();
+		const diff = Math.max(0, now - timestamp);
+		const mins = Math.floor(diff / 60000);
+		if (mins < 1) return "刚刚";
+		if (mins < 60) return `${mins} 分钟前`;
+		const hours = Math.floor(mins / 60);
+		if (hours < 24) return `${hours} 小时前`;
+		const days = Math.floor(hours / 24);
+		if (days === 1) return "昨天";
+		if (days < 30) return `${days} 天前`;
 		const date = new Date(timestamp);
-		const year = date.getFullYear();
-		const month = String(date.getMonth() + 1).padStart(2, "0");
-		const day = String(date.getDate()).padStart(2, "0");
-		const hours = String(date.getHours()).padStart(2, "0");
-		const minutes = String(date.getMinutes()).padStart(2, "0");
-		const seconds = String(date.getSeconds()).padStart(2, "0");
-		return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
+		return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
 	}
 }
 
