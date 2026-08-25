@@ -6,27 +6,24 @@ discord-status {
   width: 100%;
   max-width: 720px;
   margin: 1.5rem auto;
-  content-visibility: auto;
-  contain-intrinsic-size: 0 200px;
 }
 
-/* 外层大卡片 - 避免 contain: paint 导致投影被截断 */
+/* 外层大卡片 */
 .discord-card {
   background: var(--card-bg, #ffffff);
   border: 1px solid var(--card-border, #e5e7eb);
   border-radius: 1rem;
   padding: 1.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
   font-family: system-ui, -apple-system, sans-serif;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
-  contain: layout style;
   will-change: transform;
 }
 
 .discord-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 12px -2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.12), 0 4px 6px -4px rgba(0, 0, 0, 0.08);
 }
 
 /* 内部分栏容器 */
@@ -392,6 +389,11 @@ discord-status {
   --activity-bg: #383a40;
   --activity-bg-hover: #404249;
   --activity-border: #404249;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.dark .discord-card:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.45);
 }
 
 .dark .activity-item {
