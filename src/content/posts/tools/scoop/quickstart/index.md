@@ -168,7 +168,7 @@ notepad $PROFILE
 scoop search <软件名>
 ```
 支持模糊搜索，会返回包含该关键字的软件名称和对应的bucket，如图所示
-![scoop search oh-my-posh](scoop_search.png)
+![scoop search oh-my-posh](scoop_search.webp)
 
 ### 安装软件
 - 不指明bucket，由Scoop自动匹配

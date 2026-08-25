@@ -2,7 +2,7 @@
 title: ✨️使用 Oh_My_Posh 美化你的 PowerShell 终端
 published: 2026-04-11    # 发布日期
 description: 告别蓝底白字的原始体验，打造 Windows 上最优雅的终端提示符   # 显示在首页卡片
-image: ./amro_preview.png     # 封面图路径（可选）
+image: ./amro_preview.webp     # 封面图路径（可选）
 tags: [工具, 教程, 效率, 软件, PowerShell, Windows, 终端, Terminal-icon, Oh_My_Posh]     # 文章标签
 category: 工具       
 draft: false
@@ -28,13 +28,13 @@ https://ohmyposh.dev/
 - 🌍 **配置通用**：一份配置全平台通用，在 Windows、macOS 与 Linux 间无缝迁移。
 
 废话少说，上图
-![amro主题预览](./amro_preview.png)
+![amro主题预览](./amro_preview.webp)
 <p align="center" style="color: gray; font-size: 14px; margin-top: -10px;">此处使用 amro 主题做演示</p>  
 
 > 我喜欢简约所以用的amro 其实你们应该更熟悉这种风格  
 > ~~懒得再配一遍了~~，直接上官方文档中演示截的图
 
-![powerlevel10k主题预览](./powerlevel10k_preview.png)
+![powerlevel10k主题预览](./powerlevel10k_preview.webp)
 <p align="center" style="color: gray; font-size: 14px; margin-top: -10px;">此处使用 powerlevel10k 主题做演示</p>
 
 ## 前置条件
@@ -76,11 +76,11 @@ scoop install Maple-Mono-NF-CN
 
 ### 1. 修改 Windows Terminal 字体
 按下 `win` + `R` 键，输入 `wt` 后按下回车以打开 Windows Terminal
-![运行 Windows Terminal](./run_windows_terminal.png)
+![运行 Windows Terminal](./run_windows_terminal.webp)
 打开 Windows Terminal 的设置，进入 `配置文件` -> `PowerShell`（也可以修改`默认值`） -> `外观` ，将 `字体` 的值修改为 **支持 Nerd-Font** 的字体，如 `Maple Mono NF CN`
-![打开 Windows Terminal](./open_windows_terminal_settings.png)
-![进入外观设置](./open_aspect_settings.png)
-![设置为支持 Nerd-Font 的字体](./set_font.png)
+![打开 Windows Terminal](./open_windows_terminal_settings.webp)
+![进入外观设置](./open_aspect_settings.webp)
+![设置为支持 Nerd-Font 的字体](./set_font.webp)
 ### 2. 安装 Oh My Posh 本体
 推荐使用 `Scoop` 安装 `Oh My Posh`，[Scoop 使用教程](https://blog.tomchicken.icu/posts/tools/scoop/quickstart/)  
 ```powershell

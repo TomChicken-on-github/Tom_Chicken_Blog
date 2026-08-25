@@ -2,7 +2,7 @@
 title: 服务器测评 - AkileCloud - LAXPremium-Mini
 published: 2026-03-11    # 发布日期
 description: Akile - LAXPremium    # 显示在首页卡片
-image: ../logo.png       # 封面图路径（可选）
+image: ../logo.webp       # 封面图路径（可选）
 tags: [服务器, VPS, Akile, 测评]     # 文章标签
 category: 服务器测评       # 文章分类
 draft: false             # false=发布, true=草稿（仅本地可见）
