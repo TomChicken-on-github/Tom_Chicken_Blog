@@ -915,16 +915,51 @@ class DiscordStatus extends HTMLElement {
 		const isMusic =
 			(act.type === 2 || act.name === "Spotify") && act.timestamps?.end;
 
-		const updateFn = isMusic
-			? () => this._updateMusicProgress(act, idx, timerKey)
-			: () => this._updateElapsedTime(act, idx, timerKey);
+		if (isMusic) {
+			const now = Date.now();
+			const end = act.timestamps.end;
 
-		updateFn();
-		const timer = setInterval(
-			updateFn,
-			DiscordStatus.CONFIG.progressUpdateInterval,
-		);
-		this.progressTimers.set(timerKey, timer);
+			// 若歌曲已到期，不再启动递增定时器，直接触发或计划刷新
+			if (now >= end) {
+				if (!this.songEndTimers.has(timerKey)) {
+					const endTimer = setTimeout(() => {
+						this.songEndTimers.delete(timerKey);
+						this.fetchInitialData();
+					}, DiscordStatus.CONFIG.songEndDelay);
+					this.songEndTimers.set(timerKey, endTimer);
+				}
+				return;
+			}
+
+			// 清理旧的进度定时器
+			const oldTimer = this.progressTimers.get(timerKey);
+			if (oldTimer) {
+				clearInterval(oldTimer);
+				this.progressTimers.delete(timerKey);
+			}
+
+			const updateFn = () => this._updateMusicProgress(act, idx, timerKey);
+			updateFn();
+			const timer = setInterval(
+				updateFn,
+				DiscordStatus.CONFIG.progressUpdateInterval,
+			);
+			this.progressTimers.set(timerKey, timer);
+		} else {
+			const oldTimer = this.progressTimers.get(timerKey);
+			if (oldTimer) {
+				clearInterval(oldTimer);
+				this.progressTimers.delete(timerKey);
+			}
+
+			const updateFn = () => this._updateElapsedTime(act, idx, timerKey);
+			updateFn();
+			const timer = setInterval(
+				updateFn,
+				DiscordStatus.CONFIG.progressUpdateInterval,
+			);
+			this.progressTimers.set(timerKey, timer);
+		}
 	}
 
 	_updateMusicProgress(act, idx, timerKey) {
@@ -961,13 +996,23 @@ class DiscordStatus extends HTMLElement {
 			timeEl.textContent = `${mins}:${secs.toString().padStart(2, "0")} / ${totalMins}:${totalSecs.toString().padStart(2, "0")}`;
 		}
 
-		if (pct >= 100) {
-			this._cleanupActivityTimer(timerKey);
-			const endTimer = setTimeout(() => {
-				this.fetchInitialData();
-				this.songEndTimers.delete(timerKey);
-			}, DiscordStatus.CONFIG.songEndDelay);
-			this.songEndTimers.set(timerKey, endTimer);
+		// 歌曲播放完毕（>= 100% 或当前时间超过结束时间）
+		if (pct >= 100 || now >= end) {
+			// 立即停止每秒 progress interval，防止它在下一次 tick 时反复清理并重置 endTimer
+			const progressTimer = this.progressTimers.get(timerKey);
+			if (progressTimer) {
+				clearInterval(progressTimer);
+				this.progressTimers.delete(timerKey);
+			}
+
+			// 计划在 songEndDelay 后刷新一次最新状态
+			if (!this.songEndTimers.has(timerKey)) {
+				const endTimer = setTimeout(() => {
+					this.songEndTimers.delete(timerKey);
+					this.fetchInitialData();
+				}, DiscordStatus.CONFIG.songEndDelay);
+				this.songEndTimers.set(timerKey, endTimer);
+			}
 		}
 	}
 
