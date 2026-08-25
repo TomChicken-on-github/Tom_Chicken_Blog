@@ -20,6 +20,7 @@ const NSFW_KEYWORDS = [
 	"成人",
 	"成人向け",
 	"エロ",
+	"里番",
 ];
 
 export function isVndbNsfw(item: VndbUlistEntry): boolean {
