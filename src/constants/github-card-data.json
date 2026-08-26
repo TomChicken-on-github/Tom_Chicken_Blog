@@ -1,4 +1,10 @@
 {
+	"aria2/aria2": {
+		"description": "aria2 is a lightweight multi-protocol & multi-source, cross platform download utility operated in command-line. It supports HTTP/HTTPS, FTP, SFTP, BitTorrent and Metalink.",
+		"language": "C++",
+		"avatarUrl": "https://avatars.githubusercontent.com/u/13545224?v=4",
+		"license": "GPL-2.0"
+	},
 	"cuteleaf/firefly": {
 		"description": "🍀Firefly, fresh and aesthetic Astro blog theme template. ",
 		"language": "Astro",

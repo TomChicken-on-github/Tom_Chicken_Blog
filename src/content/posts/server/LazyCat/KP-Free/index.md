@@ -38,4 +38,4 @@ draft: false             # false=发布, true=草稿（仅本地可见）
 :::note
 从美国广播过来的，还不赖
 :::
-![IPQuality](https://report.check.place/ip/G4R5HE4DS.svg)
+![IPQuality](./IPQuality.svg)
