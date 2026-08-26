@@ -64,6 +64,17 @@ export const sponsorConfig: SponsorConfig = {
 			amount: "¥50",
 			date: "2026-08-22",
 		},
+		{
+			name: "Cherie",
+			avatar: "/assets/images/sponsor/Cherie.jpg",
+			amount: "¥50",
+			date: "2026-08-26",
+		},
+		{
+			name:"Lisa",
+			amount:"¥88.88",
+			date:"2026-08-26",
+		}
 		/* 示例：已实名打赏者
 		{
 			name: "夏叶",
