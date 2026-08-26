@@ -31,7 +31,6 @@
   "src:assets/images/DesktopWallpaper/d3.avif": "4268936f829e99adc7",
   "src:assets/images/DesktopWallpaper/d2.avif": "e8f3e6b0bdb4f5e6de",
   "src:assets/images/DesktopWallpaper/d1.avif": "8b9bb59ba6bae7d7dd",
-  "public:assets/images/sponsor/alipay.png": "8ebbde91bedf93c0e0",
   "public:assets/images/ad/ad1.webp": "a1b8b68a8e918c8f93",
   "src:content/posts/tools/scoop/quickstart/scoop_logo.webp": "d2a893f5c3aba5b5d9",
   "src:content/posts/server/Gomami/Japan-Pulse/NetQuality.webp": "303b302a3028373e37",
@@ -41,7 +40,6 @@
   "src:content/posts/server/Akile/LAXPremium/IPQuality.webp": "2d30282b27232b2c21",
   "src:content/posts/server/Akile/LAXPremium/BackRoute.webp": "393f442b2a2d2c2c2e",
   "public:assets/images/HOSHINO_pfp.png": "e8b3c3d592bbceadd1",
-  "public:assets/images/sponsor/WeChat_Reward.png": "e8e3e5eae5e7ebe5e3",
   "public:assets/images/dynamic/adventurex26-track-mihoyo.jpg": "0c22440c0d165c5b62",
   "public:assets/images/dynamic/adventurex26-track-awards-mihoyo.jpg": "2549681a547b3e545e",
   "public:assets/images/dynamic/adventurex26-quote0.jpg": "8a38228a35207b3c2e",
@@ -322,5 +320,8 @@
   "src:content/posts/tools/oh-my-posh/quickstart/powerlevel10k_preview.webp": "8f909a8d8d8d90918e",
   "src:content/posts/tools/oh-my-posh/quickstart/open_windows_terminal_settings.webp": "333f4c37414f394554",
   "src:content/posts/tools/oh-my-posh/quickstart/open_aspect_settings.webp": "2f2f2f302f2f2a2b2b",
-  "src:content/posts/tools/oh-my-posh/quickstart/amro_preview.webp": "394858373f4f3b4456"
+  "src:content/posts/tools/oh-my-posh/quickstart/amro_preview.webp": "394858373f4f3b4456",
+  "public:assets/images/sponsor/WeChat_Reward.webp": "ede8eaece7e9eee8e3",
+  "public:assets/images/sponsor/Cherie.webp": "5340295e4f3f171815",
+  "public:assets/images/sponsor/alipay.webp": "bec1ebafc8e6afdee3"
 }

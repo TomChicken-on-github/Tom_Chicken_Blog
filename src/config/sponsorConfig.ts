@@ -25,7 +25,7 @@ export const sponsorConfig: SponsorConfig = {
 			name: "支付宝",
 			icon: "fa7-brands:alipay",
 			// 收款码图片路径（需要放在 public 目录下）
-			qrCode: "/assets/images/sponsor/alipay.png",
+			qrCode: "/assets/images/sponsor/alipay.webp",
 			link: "",
 			description: "使用 支付宝 扫码打赏",
 			enabled: true,
@@ -33,7 +33,7 @@ export const sponsorConfig: SponsorConfig = {
 		{
 			name: "微信",
 			icon: "fa7-brands:weixin",
-			qrCode: "/assets/images/sponsor/WeChat_Reward.png",
+			qrCode: "/assets/images/sponsor/WeChat_Reward.webp",
 			link: "",
 			description: "使用 微信 扫码打赏",
 			enabled: true,
@@ -66,15 +66,15 @@ export const sponsorConfig: SponsorConfig = {
 		},
 		{
 			name: "Cherie",
-			avatar: "/assets/images/sponsor/Cherie.jpg",
+			avatar: "/assets/images/sponsor/Cherie.webp",
 			amount: "¥50",
 			date: "2026-08-26",
 		},
 		{
-			name:"Lisa",
-			amount:"¥88.88",
-			date:"2026-08-26",
-		}
+			name: "Lisa",
+			amount: "¥88.88",
+			date: "2026-08-26",
+		},
 		/* 示例：已实名打赏者
 		{
 			name: "夏叶",
