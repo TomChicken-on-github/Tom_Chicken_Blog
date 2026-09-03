@@ -5,7 +5,7 @@ export const announcementConfig: AnnouncementConfig = {
 	title: "",
 
 	// 公告内容
-	content: "欢迎来到我的博客！这是一则示例公告。",
+	content: "本站音乐源来自 Apple Music Lossless，出于网站性能考虑均压制为 256kbps AAC 后上传，欢迎溜冰喵~  ",
 
 	// 是否允许用户关闭公告
 	closable: true,
