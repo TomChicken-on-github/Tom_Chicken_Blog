@@ -46,7 +46,7 @@ export const siteConfig: SiteConfig = {
 	subtitle: "時よ止まれ、お前は美しい",
 
 	// 站点 URL
-	site_url: "https://blog.tomchicken.com",
+	site_url: "https://blog.tomchicken.icu",
 
 	// 站点描述
 	description: "✨Tom_ChickenのBlog | 時よ止まれ、お前は美しい",
