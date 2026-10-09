@@ -52,13 +52,14 @@ scoop/
 
 
 ## 前置条件
-- `PowerShell` 版本  >=  5.1
+- `PowerShell` 或 `Windows PowerShell` 版本  >=  5.1
 :::warning
-强烈建议将 `scoop` 安装在 `PowerShell` 上 **而不是** `Windows PowerShell`  
-并将 `PowerShell` 作为后续终端工作环境 两者**不是**同一个东西 
+强烈建议使用 `PowerShell` 作为后续终端工作环境 **而不是** `Windows PowerShell`  
+两者**不是**同一个东西 前者有跨平台支持和更好的性能 后者为系统自带 微软对其已停止新功能迭代
 :::  
 :::tip
-可以先手动安装 `PowerShell` 后在 `PowerShell` 上安装 `scoop`，然后使用 `scoop` 管理 `PowerShell`，[Release下载页](https://github.com/PowerShell/PowerShell/releases/)
+Scoop 会自动将 `shims` 写入用户 Path，工具在两个终端中均为互通且可以直接调用。  
+因此，我们只需在自带的 `Windows PowerShell` 中装好 `Scoop`，再用它安装 `PowerShell` 并切换过去即可。
 :::  
 ::github{repo="PowerShell/PowerShell"}
 
@@ -68,13 +69,13 @@ $PSVersionTable.PSVersion
 ```
 你应该会得到形如如下的输出
 ```powershell
-> PSVersionTable.PSVersion
+> $PSVersionTable.PSVersion
 
-Major  Minor  Patch  PreReleaseLabel BuildLabel
------  -----  -----  --------------- ----------
-7      6      0
+Major  Minor  Build  Revision
+-----  -----  -----  --------
+5      1      26100  9168
 ```
-此处的输出即为你当前的 PowerShell 版本号，演示中的 PowerShell 版本号为 `7.6.0`
+此处的输出即为你当前的 PowerShell 版本号，演示中的 PowerShell 版本号为 `5.1.26100.9168`
 
 
 ## 软件安装
@@ -82,7 +83,8 @@ Major  Minor  Patch  PreReleaseLabel BuildLabel
 #### 0. 指定路径（可选）
 Scoop 默认会将软件安装到 ~\scoop 目录，会占用C盘空间，打开 PowerShell 终端，执行如下命令指定 Scoop 将其安装到其他路径
 ```powershell
-$env:SCOOP='这里修改为安装目录'
+[Environment]::SetEnvironmentVariable('SCOOP', '这里修改为安装目录', 'User')
+$env:SCOOP = '这里修改为安装目录'
 ```
 #### 1. 打开 PowerShell 终端，执行如下命令：
 ```powershell
@@ -106,6 +108,13 @@ iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
 
 #### 2. 验证安装
 安装完成后执行`scoop --version`，若能正常显示版本即安装成功
+
+#### 3. 安装 PowerShell（可选）
+直接在当前终端执行命令安装 `PowerShell`：
+```powershell
+scoop install pwsh
+```
+安装完成后，关掉当前窗口，按 Win + R 输入 `pwsh`（或在 Windows Terminal 中选择 PowerShell）打开，后续直接将它作为主力终端即可。
 
 ## 软件配置与优化 
 
