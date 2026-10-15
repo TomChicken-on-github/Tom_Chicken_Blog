@@ -58,6 +58,15 @@ export const friendsConfig: FriendLink[] = [
 		weight: 9,
 		enabled: true,
 	},
+	{
+		title: "bileizhen",
+		imgurl: "https://q1.qlogo.cn/g?b=qq&nk=3140014249&s=640",
+		desc: "Details are not the details. They make the design.",
+		siteurl: "https://bileizhen.top/",
+		tags: ["Blog"],
+		weight: 8,
+		enabled: true,
+	},
 ];
 
 // 获取启用的友链并进行排序
