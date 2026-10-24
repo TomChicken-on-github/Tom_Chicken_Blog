@@ -67,6 +67,15 @@ export const friendsConfig: FriendLink[] = [
 		weight: 8,
 		enabled: true,
 	},
+	{
+		title: "-达困-のBlog",
+		imgurl: "https://dakun205.dpdns.org/wp-content/uploads/2026/10/1258803923.jpg",
+		desc: "达困の日记本",
+		siteurl: "https://dakun205.dpdns.org",
+		tags: ["Blog"],
+		weight: 7,
+		enabled: true,
+	},
 ];
 
 // 获取启用的友链并进行排序
