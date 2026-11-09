@@ -76,6 +76,15 @@ export const friendsConfig: FriendLink[] = [
 		weight: 7,
 		enabled: true,
 	},
+	{
+		title: "shouw’s blog",
+		imgurl: "https://shouw.blog/avatar.jpg",
+		desc: "shouwの博客",
+		siteurl: "https://shouw.blog",
+		tags: ["Blog"],
+		weight: 6,
+		enabled: true,
+	},
 ];
 
 // 获取启用的友链并进行排序
